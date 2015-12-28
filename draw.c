@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 19:12:29 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/28 19:15:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/28 20:07:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,15 @@
 
 void		draw_rect(t_mlx *x, t_aera *aera, int color)
 {
-	const int		end = aera->end.x * aera->end.y + 1;
-	int				px;
+	int				line;
+	int				col;
+	const int		rx = aera->start.x;
+	const int		ry = aera->start.y;
 
-	px = aera->start.x * aera->start.y;
-	while (px < end)
-	{
-		mlx_pixel_put(x->mlxptr,
-				x->winptr,
-				aera->start.x + (px / (aera->end.x - aera->start.x)),
-				aera->start.y + (px % (aera->end.x - aera->start.y)),
-				color);
-		++px;
-	}
+	line = aera->end.x - aera->start.x;
+	while ((line--) && ((col = aera->end.y - aera->start.y)))
+		while (col--)
+			mlx_pixel_put(x->mlxptr, x->winptr, rx + line, ry + col, color);
 }
 
 int			draw(int *tab)
@@ -46,7 +42,7 @@ int			draw(int *tab)
 	a.start.y = 42;
 	a.end.x = 442;
 	a.end.y = 100;
-	draw_rect(&x, &a, COLOR_GREEN);
+	draw_rect(&x, &a, COLOR_WHITE);
 	mlx_loop(x.mlxptr);
 	return (0);
 }
