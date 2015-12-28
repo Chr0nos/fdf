@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 19:12:29 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/28 21:37:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/28 21:51:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ void		draw_line(t_mlx *x, t_aera *aera, int color)
 	int			px;
 
 	px = 0;
-	while (px <= end)
+	while (px != end)
 	{
 		mlx_pixel_put(x->mlxptr,
 				x->winptr,
 				px + aera->start.x,
 				(int)((float)px / (float)end * ex) + aera->start.y,
 				color);
-		++px;
+		px += ((end < 0) ? -1 : 1);
 	}
 }
 
@@ -72,7 +72,7 @@ int			draw(t_tab *tab)
 		return (1);
 	if (!(x.winptr = mlx_new_window(x.mlxptr, 800, 600, "Coucou")))
 		return (2);
-	a = make_aera(42, 42, 442, 100);
+	a = make_aera(442, 100, 42, 42);
 	draw_line(&x, a, COLOR_WHITE);
 	free(a);
 	mlx_loop(x.mlxptr);
