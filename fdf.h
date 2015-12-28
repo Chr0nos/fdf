@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 17:38:37 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/28 21:00:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/28 21:34:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct	s_mlx
 	void		*winptr;
 }				t_mlx;
 
+t_aera	*make_aera(int x, int y, int ex, int ey);
 int		draw(t_tab *tab);
 void	draw_rect(t_mlx *x, t_aera *aera, int color);
 void	draw_line(t_mlx *x, t_aera *aera, int color);

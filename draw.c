@@ -6,13 +6,14 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 19:12:29 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/28 21:22:38 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/28 21:37:13 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "mlx.h"
 #include "libft.h"
+#include <stdlib.h>
 
 void		draw_rect(t_mlx *x, t_aera *aera, int color)
 {
@@ -61,7 +62,7 @@ void		draw_grid(t_mlx *x, t_tab *tab)
 int			draw(t_tab *tab)
 {
 	t_mlx	x;
-	t_aera	a;
+	t_aera	*a;
 
 	(void)tab;
 	(void)draw_rect;
@@ -71,11 +72,9 @@ int			draw(t_tab *tab)
 		return (1);
 	if (!(x.winptr = mlx_new_window(x.mlxptr, 800, 600, "Coucou")))
 		return (2);
-	a.start.x = 42;
-	a.start.y = 42;
-	a.end.x = 442;
-	a.end.y = 100;
-	draw_line(&x, &a, COLOR_WHITE);
+	a = make_aera(42, 42, 442, 100);
+	draw_line(&x, a, COLOR_WHITE);
+	free(a);
 	mlx_loop(x.mlxptr);
 	return (0);
 }

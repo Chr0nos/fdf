@@ -6,7 +6,7 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/28 16:24:25 by snicolet          #+#    #+#              #
-#    Updated: 2015/12/28 19:14:18 by snicolet         ###   ########.fr        #
+#    Updated: 2015/12/28 21:33:05 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ MLX=./minilibx_macos
 MLXFLAGS=-lmlx -framework OpenGL -framework AppKit
 LIBFT=../libft/
 OBJ=main.o \
-	draw.o
+	draw.o \
+	aera.o
 NAME=fdf
 
 all: $(NAME)
