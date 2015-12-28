@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/28 19:14:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/28 20:30:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,27 @@
 #include <string.h>
 #include <fcntl.h>
 #include <stdlib.h>
+
+static void		load_tab(int *tab, t_list *lst)
+{
+	unsigned int	p;
+	unsigned int	p2;
+	char			**split;
+
+	p = 0;
+	split = NULL;
+	while ((lst) && (!(p2 = 0)))
+	{
+		split = ft_strsplit((char *)(lst->content), ' ');
+		while (split[p2])
+		{
+			tab[p++] = ft_atoi(split[p2]);
+			free(split[p2]);
+			++p2;
+		}
+		lst = lst->next;
+	}
+}
 
 static int		*gettab(char *filepath)
 {
@@ -31,10 +52,8 @@ static int		*gettab(char *filepath)
 		ft_lstpush_back(&lst, ft_lstnewstr(line));
 	if (!(tab = malloc(sizeof(int) * ft_lstsize(lst))))
 		return (NULL);
-	while (lst)
-	{
-		lst = lst->next;
-	}
+	load_tab(tab, lst);
+	ft_lstdel(&lst, ft_lstpulverisator);
 	return (tab);
 }
 
