@@ -6,7 +6,7 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/28 16:24:25 by snicolet          #+#    #+#              #
-#    Updated: 2015/12/28 19:07:09 by snicolet         ###   ########.fr        #
+#    Updated: 2015/12/28 19:14:18 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ FLAGS=-Wall -Werror -Wextra -Weverything -fsanitize=address
 MLX=./minilibx_macos
 MLXFLAGS=-lmlx -framework OpenGL -framework AppKit
 LIBFT=../libft/
-OBJ=main.o
+OBJ=main.o \
+	draw.o
 NAME=fdf
 
 all: $(NAME)

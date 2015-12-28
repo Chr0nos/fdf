@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 17:38:37 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/28 18:19:14 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/28 19:15:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct	s_mlx
 	void		*winptr;
 }				t_mlx;
 
+int		draw(int *tab);
+void	draw_rect(t_mlx *x, t_aera *aera, int color);
 int		main(int ac, char **av);
 
 #endif
