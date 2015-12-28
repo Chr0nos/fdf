@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 19:12:29 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/28 20:18:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/28 21:22:38 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,45 @@ void		draw_rect(t_mlx *x, t_aera *aera, int color)
 			mlx_pixel_put(x->mlxptr, x->winptr, rx + line, ry + col, color);
 }
 
-int			draw(int *tab)
+void		draw_line(t_mlx *x, t_aera *aera, int color)
+{
+	const int	end = aera->end.x - aera->start.x;
+	const int	ex = aera->end.y - aera->start.y;
+	int			px;
+
+	px = 0;
+	while (px <= end)
+	{
+		mlx_pixel_put(x->mlxptr,
+				x->winptr,
+				px + aera->start.x,
+				(int)((float)px / (float)end * ex) + aera->start.y,
+				color);
+		++px;
+	}
+}
+
+void		draw_grid(t_mlx *x, t_tab *tab)
+{
+	size_t	p;
+
+	p = 0;
+	while (p < tab->size)
+	{
+		++p;
+	}
+	(void)tab;
+	(void)x;
+}
+
+int			draw(t_tab *tab)
 {
 	t_mlx	x;
 	t_aera	a;
 
 	(void)tab;
+	(void)draw_rect;
+	(void)draw_line;
 	x.mlxptr = mlx_init();
 	if (!x.mlxptr)
 		return (1);
@@ -42,7 +75,7 @@ int			draw(int *tab)
 	a.start.y = 42;
 	a.end.x = 442;
 	a.end.y = 100;
-	draw_rect(&x, &a, COLOR_WHITE);
+	draw_line(&x, &a, COLOR_WHITE);
 	mlx_loop(x.mlxptr);
 	return (0);
 }
