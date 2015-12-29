@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/28 17:38:37 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/29 13:32:24 by snicolet         ###   ########.fr       */
+/*   Created: 2015/12/29 12:28:53 by snicolet          #+#    #+#             */
+/*   Updated: 2015/12/29 12:29:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
-# include <string.h>
-# include "draw.h"
-# define COLOR_WHITE 0xffffff
-# define COLOR_BLUE 0x0000ff
-# define COLOR_RED 0xff0000
-# define COLOR_GREEN 0x00ff00
+#include "fdf.h"
+#include "mlx.h"
 
-int				main(int ac, char **av);
+void		draw_line(t_mlx *x, t_aera *aera, int color)
+{
+	const int	end = aera->end.x - aera->start.x;
+	const int	ex = aera->end.y - aera->start.y;
+	int			px;
 
-#endif
+	px = 0;
+	while (px != end)
+	{
+		mlx_pixel_put(x->mlxptr,
+				x->winptr,
+				px + aera->start.x,
+				(int)((float)px / (float)end * ex) + aera->start.y,
+				color);
+		px += ((end < 0) ? -1 : 1);
+	}
+}

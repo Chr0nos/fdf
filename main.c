@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/28 20:39:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/29 10:56:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,20 @@ static void		load_tab(t_tab *tab, t_list *lst)
 	tab->size = p;
 }
 
+static size_t	gettab_size(t_list *lst)
+{
+	size_t	size;
+
+	size = 0;
+	while (lst)
+	{
+		size += ft_strcount((char*)lst->content, ' ') + 1;
+		lst = lst->next;
+	}
+	ft_printf("shit size: %d\n", (int)size);
+	return (size);
+}
+
 static t_tab	*gettab(char *filepath)
 {
 	int		fd;
@@ -50,9 +64,10 @@ static t_tab	*gettab(char *filepath)
 	lst = NULL;
 	while ((ret = ft_get_next_line(fd, &line)))
 		ft_lstpush_back(&lst, ft_lstnewstr(line));
-	if (!(tab = malloc(sizeof(tab))))
+	if (!(tab = malloc(sizeof(*tab))))
 		return (NULL);
-	if (!(tab->tab = malloc(sizeof(int) * ft_lstsize(lst))))
+	tab->tab = malloc(sizeof(int) * (gettab_size(lst)));
+	if (!tab->tab)
 	{
 		free(tab);
 		return (NULL);
@@ -67,7 +82,6 @@ int				main(int ac, char **av)
 	t_tab	*tab;
 	int		ret;
 
-	draw(0);
 	ret = 0;
 	if (ac > 1)
 	{

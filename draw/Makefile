@@ -5,40 +5,37 @@
 #                                                     +:+ +:+         +:+      #
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/12/28 16:24:25 by snicolet          #+#    #+#              #
-#    Updated: 2015/12/29 13:33:12 by snicolet         ###   ########.fr        #
+#    Created: 2015/12/29 12:33:23 by snicolet          #+#    #+#              #
+#    Updated: 2015/12/29 13:33:49 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=clang
-FLAGS=-Wall -Werror -Wextra -Weverything -fsanitize=address
-MLX=./minilibx_macos
+FLAGS=-Wall -Wextra -Weverything -fsanitize=address
+LIBFT=../../libft/
 MLXFLAGS=-lmlx -framework OpenGL -framework AppKit
-LIBFT=../libft/
-DRAW_PATH=./draw/
-
-OBJ=main.o \
-	aera.o
-NAME=fdf
+MLX=../minilibx_macos
+NAME=libdraw.a
+OBJ=draw.o \
+	draw_line.o \
+	draw_box.o \
+	draw_rect.o
 
 all: $(NAME)
 
-$(NAME): $(OBJ) draw
-	$(CC) $(FLAGS) $(OBJ) -o $(NAME)  -L $(LIBFT) -lft $(MLXFLAGS) -L $(DRAW_PATH) -ldraw -I $(DRAW_PATH)
-
-%.o: %.c
-	$(CC) -c $< $(FLAGS) -I $(MLX) -I $(LIBFT) -I.
+$(NAME): $(OBJ)
+	$(AR) rc $(NAME) $(OBJ)
+	ranlib $(NAME)
 
 clean:
 	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
-	make -C $(DRAW_PATH) fclean
-
-draw:
-	make -C $(DRAW_PATH) FLAGS="$(FLAGS)"
 
 re: fclean all
 
-.PHONY: clean fclean re draw
+%.o: %.c
+	$(CC) -c $< $(FLAGS) -I $(MLX) -I $(LIBFT) -I../
+
+.PHONY: re fclean clean

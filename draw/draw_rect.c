@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   draw_rect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/28 17:38:37 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/29 13:32:24 by snicolet         ###   ########.fr       */
+/*   Created: 2015/12/29 12:31:32 by snicolet          #+#    #+#             */
+/*   Updated: 2015/12/29 12:31:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
-# include <string.h>
-# include "draw.h"
-# define COLOR_WHITE 0xffffff
-# define COLOR_BLUE 0x0000ff
-# define COLOR_RED 0xff0000
-# define COLOR_GREEN 0x00ff00
+#include "fdf.h"
+#include "mlx.h"
 
-int				main(int ac, char **av);
+void		draw_rect(t_mlx *x, t_aera *aera, int color)
+{
+	int				line;
+	int				col;
+	const int		rx = aera->start.x;
+	const int		ry = aera->start.y;
 
-#endif
+	line = aera->end.x - aera->start.x;
+	while ((line--) && ((col = aera->end.y - aera->start.y)))
+		while (col--)
+			mlx_pixel_put(x->mlxptr, x->winptr, rx + line, ry + col, color);
+}
