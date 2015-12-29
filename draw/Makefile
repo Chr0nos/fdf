@@ -6,7 +6,7 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/29 12:33:23 by snicolet          #+#    #+#              #
-#    Updated: 2015/12/29 13:33:49 by snicolet         ###   ########.fr        #
+#    Updated: 2015/12/29 15:35:28 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,12 @@ LIBFT=../../libft/
 MLXFLAGS=-lmlx -framework OpenGL -framework AppKit
 MLX=../minilibx_macos
 NAME=libdraw.a
-OBJ=draw.o \
-	draw_line.o \
+OBJ=draw_line.o \
 	draw_box.o \
-	draw_rect.o
+	draw_rect.o \
+	draw_px.o \
+	draw_new_image.o \
+	draw_init.o
 
 all: $(NAME)
 

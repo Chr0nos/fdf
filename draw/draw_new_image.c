@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_line.c                                        :+:      :+:    :+:   */
+/*   draw_new_image.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/29 12:28:53 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/29 16:35:58 by snicolet         ###   ########.fr       */
+/*   Created: 2015/12/29 14:41:47 by snicolet          #+#    #+#             */
+/*   Updated: 2015/12/29 16:20:52 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 #include "mlx.h"
+#include <stdlib.h>
 
-void		draw_line(t_mlx *x, t_aera *aera, int color)
+void	draw_new_image(t_mlx *x)
 {
-	int			px;
-	const int	end = aera->end.x - aera->start.x;
-	const int	ex = aera->end.y - aera->start.y;
-	const int	mod = (end < 0) ? -1 : 1;
-	t_point		point;
+	t_mlx_img	*img;
 
-	px = 0;
-	while (px != end)
+	img = (t_mlx_img*)malloc(sizeof(t_mlx_img));
+	if (img)
 	{
-		point.x = px + aera->start.x;
-		point.y = (int)((float)px / (float)end * ex) + aera->start.y;
-		draw_px(x, &point, color);
-		px += mod;
+		img->endian = 0;
+		img->img = mlx_new_image(x->mlxptr, x->width, x->height);
+		if (img->img)
+		{
+			img->data = mlx_get_data_addr(img->img, &img->bpp, &x->width,
+					&img->endian);
+			x->img = img;
+		}
 	}
 }

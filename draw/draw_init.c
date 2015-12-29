@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_line.c                                        :+:      :+:    :+:   */
+/*   draw_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/29 12:28:53 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/29 16:35:58 by snicolet         ###   ########.fr       */
+/*   Created: 2015/12/29 15:10:35 by snicolet          #+#    #+#             */
+/*   Updated: 2015/12/29 16:23:28 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 #include "mlx.h"
+#include <string.h>
+#include <stdlib.h>
 
-void		draw_line(t_mlx *x, t_aera *aera, int color)
+t_mlx	*draw_init(char *name, int width, int height)
 {
-	int			px;
-	const int	end = aera->end.x - aera->start.x;
-	const int	ex = aera->end.y - aera->start.y;
-	const int	mod = (end < 0) ? -1 : 1;
-	t_point		point;
+	t_mlx	*x;
 
-	px = 0;
-	while (px != end)
+	if (!(x = (t_mlx*)malloc(sizeof(t_mlx))))
+		return (NULL);
+	x->mlxptr = mlx_init();
+	if (!x->mlxptr)
 	{
-		point.x = px + aera->start.x;
-		point.y = (int)((float)px / (float)end * ex) + aera->start.y;
-		draw_px(x, &point, color);
-		px += mod;
+		free(x);
+		return (NULL);
 	}
+	if (!(x->winptr = mlx_new_window(x->mlxptr, width, height, name)))
+	{
+		free(x);
+		return (NULL);
+	}
+	x->height = height;
+	x->width = width;
+	draw_new_image(x);
+	return (x);
 }

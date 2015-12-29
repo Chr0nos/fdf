@@ -6,13 +6,14 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/29 13:37:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/29 16:23:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
 #include "draw.h"
+#include "mlx.h"
 #include <string.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -31,7 +32,7 @@ static void		load_tab(t_tab *tab, t_list *lst)
 		while (split[p2])
 		{
 			tab->tab[p++] = ft_atoi(split[p2]);
-			free(split[++p2]);
+			free(split[p2++]);
 		}
 		lst = lst->next;
 	}
@@ -78,6 +79,24 @@ static t_tab	*gettab(char *filepath)
 	return (tab);
 }
 
+static void		display(void)
+{
+	t_mlx	*x;
+	t_aera	a;
+	char	name[20];
+
+	ft_strcpy(name, "Coucou");
+	ft_putendl("init");
+	x = draw_init(name, 800, 600);
+	a.start.x = 42;
+	a.start.y = 42;
+	a.end.x = 80;
+	a.end.y = 80;
+	ft_putendl("drawing line");
+	draw_line(x, &a, COLOR_WHITE);
+	mlx_loop(x->mlxptr);
+}
+
 int				main(int ac, char **av)
 {
 	t_tab	*tab;
@@ -89,7 +108,7 @@ int				main(int ac, char **av)
 		tab = gettab(av[1]);
 		if (tab)
 		{
-			ret = draw(tab);
+			display();
 			free(tab);
 		}
 	}

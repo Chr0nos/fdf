@@ -6,7 +6,7 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/28 16:24:25 by snicolet          #+#    #+#              #
-#    Updated: 2015/12/29 13:42:02 by snicolet         ###   ########.fr        #
+#    Updated: 2015/12/29 16:01:19 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ NAME=fdf
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	make -C $(LIBFT) FLAGS="$(FLAGS)" EXTRA_FLAGS=
 	make -C $(DRAW_PATH) FLAGS="$(FLAGS)"
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)  -L $(LIBFT) -lft $(MLXFLAGS) -L $(DRAW_PATH) -ldraw -I $(DRAW_PATH)
 
@@ -36,6 +37,9 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	make -C $(DRAW_PATH) fclean
+	make -C $(LIBFT) fclean
+draw:
+	make -C $(DRAW_PATH)
 
 re: fclean all
 
