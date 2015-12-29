@@ -6,12 +6,13 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/29 10:56:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/29 13:37:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
+#include "draw.h"
 #include <string.h>
 #include <fcntl.h>
 #include <stdlib.h>

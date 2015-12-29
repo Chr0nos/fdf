@@ -6,11 +6,11 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 12:31:32 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/29 12:31:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/29 13:39:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "draw.h"
 #include "mlx.h"
 
 void		draw_rect(t_mlx *x, t_aera *aera, int color)

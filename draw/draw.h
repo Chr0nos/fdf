@@ -6,12 +6,13 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/29 13:32:09 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/29 13:39:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DRAW_H
 # define DRAW_H
+# include <string.h>
 # define COLOR_WHITE 0xffffff
 # define COLOR_BLUE 0x0000ff
 # define COLOR_RED 0xff0000
@@ -50,5 +51,6 @@ void			draw_rect(t_mlx *x, t_aera *aera, int color);
 void			draw_line(t_mlx *x, t_aera *aera, int color);
 void			draw_grid(t_mlx *x, t_tab *tab);
 void			draw_box(t_mlx *x, t_aera *aera, int color);
+int				draw(t_tab *tab);
 
 #endif

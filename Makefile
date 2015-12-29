@@ -6,7 +6,7 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/28 16:24:25 by snicolet          #+#    #+#              #
-#    Updated: 2015/12/29 13:33:12 by snicolet         ###   ########.fr        #
+#    Updated: 2015/12/29 13:36:45 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ $(NAME): $(OBJ) draw
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)  -L $(LIBFT) -lft $(MLXFLAGS) -L $(DRAW_PATH) -ldraw -I $(DRAW_PATH)
 
 %.o: %.c
-	$(CC) -c $< $(FLAGS) -I $(MLX) -I $(LIBFT) -I.
+	$(CC) -c $< $(FLAGS) -I $(MLX) -I $(LIBFT) -I. -I $(DRAW_PATH)
 
 clean:
 	rm -f $(OBJ)

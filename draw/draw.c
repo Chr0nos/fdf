@@ -6,13 +6,13 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 19:12:29 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/29 13:07:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/29 13:38:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
 #include "mlx.h"
 #include "libft.h"
+#include "draw.h"
 #include <stdlib.h>
 
 void		draw_grid(t_mlx *x, t_tab *tab)
