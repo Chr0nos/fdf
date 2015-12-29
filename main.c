@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/29 16:23:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/29 17:31:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ static t_tab	*gettab(char *filepath)
 		return (NULL);
 	lst = NULL;
 	while ((ret = ft_get_next_line(fd, &line)))
+	{
 		ft_lstpush_back(&lst, ft_lstnewstr(line));
+		free(line);
+	}
 	if (!(tab = malloc(sizeof(*tab))))
 		return (NULL);
 	tab->tab = malloc(sizeof(int) * (gettab_size(lst)));
@@ -94,6 +97,7 @@ static void		display(void)
 	a.end.y = 80;
 	ft_putendl("drawing line");
 	draw_line(x, &a, COLOR_WHITE);
+	draw_flush_image(x, x->img);
 	mlx_loop(x->mlxptr);
 }
 

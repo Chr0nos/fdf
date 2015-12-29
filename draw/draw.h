@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/29 16:21:19 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/29 17:21:22 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void			draw_line(t_mlx *x, t_aera *aera, int color);
 void			draw_grid(t_mlx *x, t_tab *tab);
 void			draw_box(t_mlx *x, t_aera *aera, int color);
 void			draw_new_image(t_mlx *x);
+void			draw_flush_image(t_mlx *x, t_mlx_img *img);
 t_mlx			*draw_init(char *name, int width, int height);
 
 #endif
