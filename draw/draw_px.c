@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 14:13:28 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/29 17:10:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/30 13:39:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,11 @@
 
 void	draw_px(t_mlx *x, t_point *point, int color)
 {
-	t_mlx_img		*buffer;
-	size_t			octect;
-	size_t			position;
-	size_t			bw;
+	int			octet;
+	int			position;
 
-	buffer = x->img;
-	bw = (size_t)buffer->width;
-	octect = bw / (size_t)x->width;
-	if (point->y > 0)
-		point->y -= 1;
-	position = (bw * (size_t)point->y) + ((size_t)point->x * octect);
-	ft_printf("buffer: %p data: %p position: %d bw: %d\n", buffer, buffer->data, (int)position, buffer->width);
-	if (ft_memcmp(buffer->data + position, &color, octect) != 0)
-		ft_memcpy(buffer->data + position, &color, octect);
+	octet = x->img->bpp / 8;
+	position = (x->width * point->y) + (point->x * octet);
+	if (ft_memcmp(x->img->data + position, &color, (unsigned)octet) != 0)
+		ft_memcpy(x->img->data + position, &color, (unsigned)octet);
 }

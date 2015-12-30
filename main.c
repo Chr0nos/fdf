@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/29 17:31:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/30 13:34:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,12 @@ static void		display(void)
 	ft_strcpy(name, "Coucou");
 	ft_putendl("init");
 	x = draw_init(name, 800, 600);
-	a.start.x = 42;
-	a.start.y = 42;
-	a.end.x = 80;
-	a.end.y = 80;
+	a.start.x = 142;
+	a.start.y = 142;
+	a.end.x = 800;
+	a.end.y = 600;
 	ft_putendl("drawing line");
+//	draw_px(x, &a.start, COLOR_WHITE);
 	draw_line(x, &a, COLOR_WHITE);
 	draw_flush_image(x, x->img);
 	mlx_loop(x->mlxptr);

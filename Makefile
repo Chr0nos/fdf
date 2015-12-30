@@ -6,7 +6,7 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/28 16:24:25 by snicolet          #+#    #+#              #
-#    Updated: 2015/12/29 16:01:19 by snicolet         ###   ########.fr        #
+#    Updated: 2015/12/30 12:58:31 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,13 @@ NAME=fdf
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+lis:
 	make -C $(LIBFT) FLAGS="$(FLAGS)" EXTRA_FLAGS=
 	make -C $(DRAW_PATH) FLAGS="$(FLAGS)"
+
+prename: $(OBJ)
+
+$(NAME): $(OBJ) lis
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)  -L $(LIBFT) -lft $(MLXFLAGS) -L $(DRAW_PATH) -ldraw -I $(DRAW_PATH)
 
 %.o: %.c
