@@ -6,7 +6,7 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/29 12:33:23 by snicolet          #+#    #+#              #
-#    Updated: 2015/12/29 17:21:45 by snicolet         ###   ########.fr        #
+#    Updated: 2015/12/30 19:07:06 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ OBJ=draw_line.o \
 	draw_px.o \
 	draw_new_image.o \
 	draw_init.o \
-	draw_flush_image.o
+	draw_flush_image.o \
+	draw_make_line.o
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/30 15:13:25 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/30 19:06:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,15 @@ typedef struct	s_area
 	t_point		end;
 }				t_area;
 
+typedef struct	s_line
+{
+	t_point		start;
+	t_point		end;
+	int			dx;
+	int			dy;
+}				t_line;
+
 typedef t_area	t_rect;
-typedef t_area	t_line;
 
 typedef struct	s_mlx_image
 {
@@ -59,6 +66,7 @@ typedef struct	s_mlx
 	int			height;
 }				t_mlx;
 
+t_line			draw_make_line(int x1, int y1, int x2, int y2);
 void			draw_px(t_mlx *x, t_point *point, int color);
 void			draw_rect(t_mlx *x, t_rect *rect, int color);
 void			draw_line(t_mlx *x, t_line *line, int color);
