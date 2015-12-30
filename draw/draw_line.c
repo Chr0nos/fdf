@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 12:28:53 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/30 16:51:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/30 17:04:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ void		draw_line(t_mlx *x, t_line *line, int color)
 
 	if ((dx == 0) && (dy == 0))
 		draw_px(x, &line->start, color);
-	else if (dx == 0)
-		draw_flat_line(x, line, dy, color);
 	else if (dy == 0)
-		draw_vertical_line(x, line, dx, color);	
+		draw_flat_line(x, line, dx, color);
+	else if (dx == 0)
+		draw_vertical_line(x, line, dy, color);	
 	else
 	{
 		dists.x = dx;
