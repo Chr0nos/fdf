@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/30 13:34:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/30 16:45:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static t_tab	*gettab(char *filepath)
 static void		display(void)
 {
 	t_mlx	*x;
-	t_aera	a;
+	t_line	a;
 	char	name[20];
 
 	ft_strcpy(name, "Coucou");
@@ -93,8 +93,8 @@ static void		display(void)
 	x = draw_init(name, 800, 600);
 	a.start.x = 142;
 	a.start.y = 142;
-	a.end.x = 800;
-	a.end.y = 600;
+	a.end.x = 142;
+	a.end.y = 242;
 	ft_putendl("drawing line");
 //	draw_px(x, &a.start, COLOR_WHITE);
 	draw_line(x, &a, COLOR_WHITE);

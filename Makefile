@@ -6,7 +6,7 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/28 16:24:25 by snicolet          #+#    #+#              #
-#    Updated: 2015/12/30 12:58:31 by snicolet         ###   ########.fr        #
+#    Updated: 2015/12/30 13:53:16 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,7 @@ MLXFLAGS=-lmlx -framework OpenGL -framework AppKit
 LIBFT=../libft/
 DRAW_PATH=./draw/
 
-OBJ=main.o \
-	aera.o
+OBJ=main.o
 NAME=fdf
 
 all: $(NAME)

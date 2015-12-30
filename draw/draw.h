@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/29 17:21:22 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/30 15:13:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,14 @@ typedef struct	s_point
 	int			y;
 }				t_point;
 
-typedef struct	s_aera
+typedef struct	s_area
 {
 	t_point		start;
 	t_point		end;
-}				t_aera;
+}				t_area;
+
+typedef t_area	t_rect;
+typedef t_area	t_line;
 
 typedef struct	s_mlx_image
 {
@@ -44,7 +47,7 @@ typedef struct	s_mlx_image
 	int			width;
 	int			bpp;
 	int			endian;
-	int			padding;
+	int			max_size;
 }				t_mlx_img;
 
 typedef struct	s_mlx
@@ -56,13 +59,11 @@ typedef struct	s_mlx
 	int			height;
 }				t_mlx;
 
-t_aera			*set_aera(t_aera *aera, t_point start, t_point end);
-t_aera			*make_aera(int x, int y, int ex, int ey);
 void			draw_px(t_mlx *x, t_point *point, int color);
-void			draw_rect(t_mlx *x, t_aera *aera, int color);
-void			draw_line(t_mlx *x, t_aera *aera, int color);
+void			draw_rect(t_mlx *x, t_rect *rect, int color);
+void			draw_line(t_mlx *x, t_line *line, int color);
 void			draw_grid(t_mlx *x, t_tab *tab);
-void			draw_box(t_mlx *x, t_aera *aera, int color);
+void			draw_box(t_mlx *x, t_rect *rect, int color);
 void			draw_new_image(t_mlx *x);
 void			draw_flush_image(t_mlx *x, t_mlx_img *img);
 t_mlx			*draw_init(char *name, int width, int height);

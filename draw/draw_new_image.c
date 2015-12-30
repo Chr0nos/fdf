@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 14:41:47 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/30 11:53:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/30 15:18:34 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	draw_new_image(t_mlx *x)
 			img->data = mlx_get_data_addr(img->img, &img->bpp, &x->width,
 					&img->endian);
 			x->img = img;
+			x->img->max_size = (img->bpp / 8) * img->width * x->height;
 			ft_printf("new image: %p - data %p - bpp: %d\n", img->img, img->data, img->bpp);
 		}
 	}
