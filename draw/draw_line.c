@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 12:28:53 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/31 13:38:32 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/31 13:44:24 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void	draw_line_bresemham(t_mlx *x, t_line *line, int color, t_point *var)
 	e[1] = (float)(line->dy) / (float)(line->dx - 1);
 	if (e[1] < 0.0f)
 		e[1] = (float)line->dy * - 1 / (float)line->dy;
+	ft_printf("%d <= %d && %d <= %d\n", point.x, line->end.x, point.y, line->end.y);
 	while (point.x <= line->end.x && point.y <= line->end.y)
 	{
 		draw_px(x, &point, color);
