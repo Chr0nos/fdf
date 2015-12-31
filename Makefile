@@ -6,7 +6,7 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/28 16:24:25 by snicolet          #+#    #+#              #
-#    Updated: 2015/12/30 13:53:16 by snicolet         ###   ########.fr        #
+#    Updated: 2015/12/31 13:42:51 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ NAME=fdf
 all: $(NAME)
 
 lis:
-	make -C $(LIBFT) FLAGS="$(FLAGS)" EXTRA_FLAGS=
+	make -C $(LIBFT) EXTRA_FLAGS= BTREE=
 	make -C $(DRAW_PATH) FLAGS="$(FLAGS)"
 
 prename: $(OBJ)
