@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/30 19:48:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/31 12:04:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,12 @@ static void		display(void)
 	x = draw_init(name, 800, 600);
 	a = draw_make_line(142, 142, 10, 10);
 	draw_line(x, &a, COLOR_RED);
+	a = draw_make_line(100, 100, 150, 150);
+	draw_line(x, &a, 0x00a0a0);
+	a = draw_make_line(100, 100, 150, 100);
+	draw_line(x, &a, 0xf0a0a0);
+	a = draw_make_line(100, 100, 0, 0);
+	draw_line(x, &a, 0x0010ff);
 	draw_flush_image(x, x->img);
 	mlx_loop(x->mlxptr);
 }
