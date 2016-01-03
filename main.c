@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/03 21:57:35 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/03 23:24:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ static void		display(void)
 	draw_line(x, &a, COLOR_RED);
 
 	r = draw_make_rect(50, 50, 200, 200);
-	draw_rect(x, &r, 0xa0f0c0);
+	draw_rect_fill(x, &r, 0xa0f0c0);
 	draw_flush_image(x, x->img);
 	mlx_loop(x->mlxptr);
 }

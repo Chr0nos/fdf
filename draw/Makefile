@@ -6,7 +6,7 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/29 12:33:23 by snicolet          #+#    #+#              #
-#    Updated: 2016/01/03 21:58:03 by snicolet         ###   ########.fr        #
+#    Updated: 2016/01/03 23:23:45 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ MLX=../minilibx_macos
 NAME=libdraw.a
 OBJ=draw_line.o \
 	draw_box.o \
-	draw_rect.o \
+	draw_rect.o draw_rect_fill.o \
 	draw_px.o \
 	draw_new_image.o \
 	draw_init.o \

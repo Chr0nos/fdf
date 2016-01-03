@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/03 21:55:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/03 23:23:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ t_rect			draw_make_rect(int x1, int y1, int x2, int y2);
 void			draw_putpoint(t_point *point);
 void			draw_px(t_mlx *x, t_point *point, int color);
 void			draw_rect(t_mlx *x, t_rect *rect, int color);
+void			draw_rect_fill(t_mlx *x, t_rect *rect, int color);
 void			draw_line(t_mlx *x, t_line *line, int color);
 void			draw_grid(t_mlx *x, t_tab *tab);
 void			draw_box(t_mlx *x, t_rect *rect, int color);
