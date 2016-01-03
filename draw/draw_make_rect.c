@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_px.c                                          :+:      :+:    :+:   */
+/*   draw_make_rect.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/29 14:13:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/03 22:21:55 by snicolet         ###   ########.fr       */
+/*   Created: 2016/01/03 21:50:34 by snicolet          #+#    #+#             */
+/*   Updated: 2016/01/03 21:54:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
-#include "libft.h"
 
-void	draw_px(t_mlx *x, t_point *point, int color)
+t_rect	draw_make_rect(int x1, int y1, int x2, int y2)
 {
-	int			octet;
-	int			position;
+	t_rect	r;
 
-	//ft_printf("putting pixel: x: %d --- y: %d\n", point->x, point->y);
-	octet = x->img->bpp / 8;
-	position = (x->img->width * point->y) + (point->x * octet);
-	if (ft_memcmp(x->img->data + position, &color, (unsigned)octet) != 0)
-		ft_memcpy(x->img->data + position, &color, (unsigned)octet);
+	r.start.x = x1;
+	r.start.y = y1;
+	r.end.x = x2;
+	r.end.y = y2;
+	return (r);
 }

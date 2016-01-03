@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/03 19:58:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/03 21:57:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,12 @@ static void		display(void)
 {
 	t_mlx	*x;
 	t_line	a;
+	t_rect	r;
 	char	name[20];
 
 	ft_strcpy(name, "Coucou");
 	x = draw_init(name, 800, 600);
-	draw_reset_image(x, 0x00a0a0);
+	draw_reset_image(x, 0x003030);
 	//en bas a droite
 	a = draw_make_line(100, 100, 800, 600);
 	draw_line(x, &a, COLOR_WHITE);
@@ -103,6 +104,9 @@ static void		display(void)
 	//en haut a gauche
 	a = draw_make_line(100, 100, 0, 0);
 	draw_line(x, &a, COLOR_RED);
+
+	r = draw_make_rect(50, 50, 200, 200);
+	draw_rect(x, &r, 0xa0f0c0);
 	draw_flush_image(x, x->img);
 	mlx_loop(x->mlxptr);
 }

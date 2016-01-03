@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 12:28:53 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/03 20:22:31 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/03 22:32:29 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "mlx.h"
 #include "libft.h"
 
-static void	draw_flat_line(t_mlx *x, t_line *line, int color)
+static void	draw_flat_line(t_mlx *x, t_line *line, int color, int variance)
 {
 	t_point		point;
 
@@ -22,11 +22,11 @@ static void	draw_flat_line(t_mlx *x, t_line *line, int color)
 	while (point.x != line->end.x)
 	{
 		draw_px(x, &point, color);
-		point.x += 1;
+		point.x += variance;
 	}
 }
 
-static void	draw_vertical_line(t_mlx *x, t_line *line, int color)
+static void	draw_vertical_line(t_mlx *x, t_line *line, int color, int variance)
 {
 	t_point		point;
 
@@ -34,7 +34,7 @@ static void	draw_vertical_line(t_mlx *x, t_line *line, int color)
 	while (point.y != line->end.y)
 	{
 		draw_px(x, &point, color);
-		point.y += 1;
+		point.y += variance;
 	}
 }
 
@@ -67,16 +67,16 @@ void		draw_line(t_mlx *x, t_line *line, int color)
 {
 	t_point		variance;
 
+	variance.x = (line->dx < 0) ? -1 : 1;
+	variance.y = (line->dy < 0) ? -1 : 1;
 	if ((line->dx == 0) && (line->dy == 0))
 		draw_px(x, &line->start, color);
 	else if (line->dy == 0)
-		draw_flat_line(x, line, color);
+		draw_flat_line(x, line, color, variance.x);
 	else if (line->dx == 0)
-		draw_vertical_line(x, line, color);	
+		draw_vertical_line(x, line, color, variance.y);	
 	else
 	{
-		variance.x = (line->dx < 0) ? -1 : 1;
-		variance.y = (line->dy < 0) ? -1 : 1;
 		draw_putpoint(&line->start);
 		draw_putpoint(&line->end);
 		draw_line_bresemham(x, line, color, &variance);
