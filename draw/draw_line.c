@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 12:28:53 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/31 13:44:24 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/03 20:22:31 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,24 @@ static void	draw_vertical_line(t_mlx *x, t_line *line, int color)
 
 static void	draw_line_bresemham(t_mlx *x, t_line *line, int color, t_point *var)
 {
-	float			e[2];
+	float			e[3];
 	t_point			point;
 
 	ft_memcpy(&point, &line->start, sizeof(t_point));
-	e[0] = 0.5f;
-	e[1] = (float)(line->dy) / (float)(line->dx - 1);
+	e[0] = -0.5f;
+	e[1] = (float)(line->dy) / (float)(line->dx);
 	if (e[1] < 0.0f)
-		e[1] = (float)line->dy * - 1 / (float)line->dy;
-	ft_printf("%d <= %d && %d <= %d\n", point.x, line->end.x, point.y, line->end.y);
-	while (point.x <= line->end.x && point.y <= line->end.y)
+		e[1] *= -1.0f;
+	e[2] = -1.0f;
+	while (point.x != line->end.x)
 	{
 		draw_px(x, &point, color);
 		e[0] += e[1];
-		if (e[0] >= (float)var->x)
+		while (e[0] >= 0)
 		{
+			draw_px(x,&point, color);
+			e[0] += e[2];
 			point.y += var->y;
-			e[0] -= (float)var->x;
 		}
 		point.x += var->x;
 	}
@@ -74,9 +75,8 @@ void		draw_line(t_mlx *x, t_line *line, int color)
 		draw_vertical_line(x, line, color);	
 	else
 	{
-		variance.x = 1;
+		variance.x = (line->dx < 0) ? -1 : 1;
 		variance.y = (line->dy < 0) ? -1 : 1;
-		ft_printf("dx %d dy %d\n", line->dx, line->dy);
 		draw_putpoint(&line->start);
 		draw_putpoint(&line->end);
 		draw_line_bresemham(x, line, color, &variance);

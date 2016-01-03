@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/31 13:36:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/03 19:57:23 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define COLOR_BLUE 0x0000ff
 # define COLOR_RED 0xff0000
 # define COLOR_GREEN 0x00ff00
+# define COLOR_BLACK 0
 
 typedef struct	s_tab
 {
@@ -75,6 +76,7 @@ void			draw_grid(t_mlx *x, t_tab *tab);
 void			draw_box(t_mlx *x, t_rect *rect, int color);
 void			draw_new_image(t_mlx *x);
 void			draw_flush_image(t_mlx *x, t_mlx_img *img);
+void			draw_reset_image(t_mlx *x, int color);
 t_mlx			*draw_init(char *name, int width, int height);
 
 #endif
