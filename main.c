@@ -6,14 +6,13 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/03 23:31:11 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/04 17:12:28 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
 #include "draw.h"
-#include "mlx.h"
 #include <string.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -61,7 +60,7 @@ static t_tab	*gettab(char *filepath)
 	t_list	*lst;
 	t_tab	*tab;
 
-	if (!(fd = open(filepath, O_RDONLY)))
+	if ((!filepath) || ((fd = open(filepath, O_RDONLY) == -1)))
 		return (NULL);
 	lst = NULL;
 	while ((ret = ft_get_next_line(fd, &line)))
@@ -110,23 +109,18 @@ static void		display(void)
 	r = draw_make_rect(50, 50, 200, 200);
 	draw_rect(x, &r, 0xa0f0c0);
 	draw_flush_image(x, x->img);
-	mlx_loop(x->mlxptr);
+	//draw_clear(x);
+	draw_loop(x);
 }
 
 int				main(int ac, char **av)
 {
-	t_tab	*tab;
-	int		ret;
-
-	ret = 0;
+	display();
 	if (ac > 1)
 	{
-		tab = gettab(av[1]);
-		if (tab)
-		{
-			display();
-			free(tab);
-		}
+		(void)gettab_size;
+		(void)gettab;
+		(void)av;
 	}
-	return (ret);
+	return (0);
 }

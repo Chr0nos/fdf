@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_box.c                                         :+:      :+:    :+:   */
+/*   draw_clear.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/29 13:06:32 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/30 19:10:39 by snicolet         ###   ########.fr       */
+/*   Created: 2016/01/04 17:06:31 by snicolet          #+#    #+#             */
+/*   Updated: 2016/01/04 17:11:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
-#include "libft.h"
+#include "mlx.h"
 
-void		draw_box(t_mlx *x, t_rect *rect, int color)
+void	draw_clear(t_mlx *x)
 {
-	t_line	line;
-
-	line = draw_make_line(rect->start.x,
-			rect->start.y,
-			rect->end.x,
-			rect->end.y);
-	draw_line(x, &line, color);
+	mlx_clear_window(x->mlxptr, x->winptr);
+	mlx_destroy_window(x->mlxptr, x->winptr);
 }

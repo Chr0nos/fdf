@@ -6,17 +6,17 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/28 16:24:25 by snicolet          #+#    #+#              #
-#*   Updated: 2016/01/04 12:55:03 by snicolet         ###   ########.fr       *#
+#*   Updated: 2016/01/04 16:53:36 by snicolet         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 CC=clang
 FLAGS=-Wall -Werror -Wextra -Weverything
 LIBFT=../libft
-MLX=./minilibx
-MLXFRAMEWORK=-framework OpenGL -framework AppKit
-MLXFLAGS=-lmlx -L$(MLX) $(MLXFRAMEWORK)
 DRAW_PATH=./draw/
+X11=-lXext -lX11 -lm
+LIBS=-L$(DRAW_PATH) -ldraw -L$(LIBFT) -lft $(X11)
+INCLUDES=-I$(LIBFT) -I$(DRAW_PATH) -I.
 
 OBJ=main.o
 NAME=fdf
@@ -25,15 +25,15 @@ all: $(NAME)
 
 lis:
 	make -C $(LIBFT) EXTRA_FLAGS= BTREE=
-	make -C $(DRAW_PATH) FLAGS="$(FLAGS)"
+	make -C $(DRAW_PATH) FLAGS="$(FLAGS)" LIBFT=../$(LIBFT)
 
 prename: $(OBJ)
 
 $(NAME): $(OBJ) lis
-	$(CC) $(FLAGS) $(OBJ) -o $(NAME)  -L $(LIBFT) -lft $(MLXFLAGS) -L $(DRAW_PATH) -ldraw -I $(DRAW_PATH)
+	$(CC) $(FLAGS) $(OBJ) -o $(NAME) $(LIBS)
 
 %.o: %.c
-	$(CC) -c $< $(FLAGS) -I $(MLX) -I $(LIBFT) -I. -I $(DRAW_PATH)
+	$(CC) -c $< $(FLAGS) $(INCLUDES)
 
 clean:
 	rm -f $(OBJ)
