@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/04 21:50:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/04 22:15:31 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void			draw_flush_image(t_mlx *x, t_mlx_img *img);
 void			draw_reset_image(t_mlx *x, int color);
 void			draw_loop(t_mlx *x);
 void			draw_clear(t_mlx *x);
+int				draw_get_px(t_mlx *x, const t_point *point);
 t_mlx			*draw_init(char *name, int width, int height);
 
 #endif
