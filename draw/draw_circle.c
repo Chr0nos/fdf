@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 13:18:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/04 13:40:55 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/04 20:26:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 static void	draw_circle_px(t_mlx *x, const t_point *p, const t_circle *c,
 		int color)
 {
-	const int	tabx[8] = { p->x, p->y, -p->y, p->x, p->y, -p->x, -p->y };
-	const int	taby[8] = { p->y, p->x, p->y, p->y, -p->y, -p->y, -p->x };
+	const int	tx[8] = { p->x, p->y, -p->x, -p->y, p->x, p->y, -p->x, -p->y };
+	const int	ty[8] = { p->y, p->x, p->y, p->x, -p->y, -p->x , -p->y, -p->x };
 	t_point		px;
 	int			idx;
 
 	idx = 8;
 	while (idx--)
 	{
-		px.x = c->start.x + tabx[idx];
-		px.y = c->start.y +  taby[idx];
+		px.x = c->center.x + tx[idx];
+		px.y = c->center.y +  ty[idx];
 		draw_px(x, &px, color);
 	}
 }
@@ -33,21 +33,19 @@ void	draw_circle(t_mlx *x, const t_circle *circle, int color)
 {
 	t_point	p;
 	int		d;
-	int		r;
 
-	r = circle->end.x - circle->start.x;
 	p.x = 0;
-	p.y = r;
+	p.y = circle->radius;
 	d = p.y - 1;
 	while (p.y >= p.x)
 	{
 		draw_circle_px(x, &p, circle, color);
 		if (d >= (p.x * 2))
 		{
-			d = d * (2 * p.x) - 1;
+			d -= (2 * p.x) + 1;
 			p.x += 1;
 		}
-		else if (d < (2 * (r - p.y)))
+		else if (d < (2 * (circle->radius - p.y)))
 		{
 			d += (2 * p.y) - 1;
 			p.y -= 1;
@@ -56,7 +54,7 @@ void	draw_circle(t_mlx *x, const t_circle *circle, int color)
 		{
 			d += 2 * (p.y - p.x - 1);
 			p.y -= 1;
-			p.y += 1;
+			p.x += 1;
 		}
 	}
 }

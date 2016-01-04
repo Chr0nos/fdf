@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/04 17:10:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/04 20:25:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,11 @@ typedef struct	s_line
 }				t_line;
 
 typedef t_area	t_rect;
-typedef t_area	t_circle;
+typedef struct	s_circle
+{
+	t_point		center;
+	int			radius;
+}				t_circle;
 
 typedef struct	s_mlx_image
 {
@@ -70,7 +74,7 @@ typedef struct	s_mlx
 
 t_line			draw_make_line(int x1, int y1, int x2, int y2);
 t_rect			draw_make_rect(int x1, int y1, int x2, int y2);
-t_circle		draw_make_circle(int x1, int y1, int x2, int y2);
+t_circle		draw_make_circle(int x1, int y1, int radius);
 void			draw_putpoint(t_point *point);
 void			draw_px(t_mlx *x, t_point *point, int color);
 void			draw_rect(t_mlx *x, t_rect *rect, int color);
