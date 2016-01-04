@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 12:28:53 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/03 22:32:29 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/04 17:24:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,5 @@ void		draw_line(t_mlx *x, t_line *line, int color)
 	else if (line->dx == 0)
 		draw_vertical_line(x, line, color, variance.y);	
 	else
-	{
-		draw_putpoint(&line->start);
-		draw_putpoint(&line->end);
 		draw_line_bresemham(x, line, color, &variance);
-	}
 }
