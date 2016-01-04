@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/03 23:23:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/04 13:19:17 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct	s_line
 }				t_line;
 
 typedef t_area	t_rect;
+typedef t_area	t_circle;
 
 typedef struct	s_mlx_image
 {
@@ -69,6 +70,7 @@ typedef struct	s_mlx
 
 t_line			draw_make_line(int x1, int y1, int x2, int y2);
 t_rect			draw_make_rect(int x1, int y1, int x2, int y2);
+t_circle		draw_make_circle(int x1, int y1, int x2, int y2);
 void			draw_putpoint(t_point *point);
 void			draw_px(t_mlx *x, t_point *point, int color);
 void			draw_rect(t_mlx *x, t_rect *rect, int color);
@@ -76,6 +78,7 @@ void			draw_rect_fill(t_mlx *x, t_rect *rect, int color);
 void			draw_line(t_mlx *x, t_line *line, int color);
 void			draw_grid(t_mlx *x, t_tab *tab);
 void			draw_box(t_mlx *x, t_rect *rect, int color);
+void			draw_circle(t_mlx *x, const t_circle *circle, int color);
 void			draw_new_image(t_mlx *x);
 void			draw_flush_image(t_mlx *x, t_mlx_img *img);
 void			draw_reset_image(t_mlx *x, int color);

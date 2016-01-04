@@ -6,7 +6,7 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/29 12:33:23 by snicolet          #+#    #+#              #
-#*   Updated: 2016/01/04 12:48:54 by snicolet         ###   ########.fr       *#
+#*   Updated: 2016/01/04 13:38:49 by snicolet         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,12 +19,14 @@ NAME=libdraw.a
 OBJ=draw_line.o \
 	draw_box.o \
 	draw_rect.o draw_rect_fill.o \
+	draw_circle.o \
 	draw_px.o \
 	draw_new_image.o \
 	draw_init.o \
 	draw_flush_image.o \
 	draw_make_line.o \
 	draw_make_rect.o \
+	draw_make_circle.o \
 	draw_putpoint.o \
 	draw_reset_image.o
 
