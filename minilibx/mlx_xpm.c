@@ -9,7 +9,6 @@
 */
 
 #include	"mlx_int.h"
-#include	"libft.h"
 
 extern struct s_col_name mlx_col_name[];
 
@@ -58,8 +57,8 @@ char	*mlx_int_static_line(char **xpm_data,int *pos,int size)
 	return ((char *)0);
       len = len2;
     }
-  /* strcpy(copy,str); */
-  ft_strlcpy(copy, str, len2+1);
+  strcpy(copy,str);
+  //ft_strlcpy(copy, str, len2+1);
   return (copy);
 }
 

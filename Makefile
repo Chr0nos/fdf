@@ -6,15 +6,16 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/28 16:24:25 by snicolet          #+#    #+#              #
-#    Updated: 2015/12/31 13:42:51 by snicolet         ###   ########.fr        #
+#*   Updated: 2016/01/04 12:55:03 by snicolet         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 CC=clang
-FLAGS=-Wall -Werror -Wextra -Weverything -fsanitize=address
-MLX=./minilibx_macos
-MLXFLAGS=-lmlx -framework OpenGL -framework AppKit
-LIBFT=../libft/
+FLAGS=-Wall -Werror -Wextra -Weverything
+LIBFT=../libft
+MLX=./minilibx
+MLXFRAMEWORK=-framework OpenGL -framework AppKit
+MLXFLAGS=-lmlx -L$(MLX) $(MLXFRAMEWORK)
 DRAW_PATH=./draw/
 
 OBJ=main.o
