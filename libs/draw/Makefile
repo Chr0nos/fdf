@@ -13,7 +13,7 @@
 CC=clang
 FLAGS=-Wall -Wextra -Weverything
 LIBFT=../libft/
-MLX=../minilibx
+MLX=../minilibx_macos
 NAME=libdraw.a
 OBJ=draw_line.o \
 	draw_rect.o draw_rect_fill.o draw_rect_mist.o \

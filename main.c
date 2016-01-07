@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/04 17:12:28 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/07 16:54:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,70 +16,7 @@
 #include <string.h>
 #include <fcntl.h>
 #include <stdlib.h>
-
-static void		load_tab(t_tab *tab, t_list *lst)
-{
-	unsigned int	p;
-	unsigned int	p2;
-	char			**split;
-
-	p = 0;
-	split = NULL;
-	while ((lst) && (!(p2 = 0)))
-	{
-		split = ft_strsplit((char *)(lst->content), ' ');
-		while (split[p2])
-		{
-			tab->tab[p++] = ft_atoi(split[p2]);
-			free(split[p2++]);
-		}
-		lst = lst->next;
-	}
-	tab->size = p;
-}
-
-static size_t	gettab_size(t_list *lst)
-{
-	size_t	size;
-
-	size = 0;
-	while (lst)
-	{
-		size += ft_strcount((char*)lst->content, ' ') + 1;
-		lst = lst->next;
-	}
-	ft_printf("shit size: %d\n", (int)size);
-	return (size);
-}
-
-static t_tab	*gettab(char *filepath)
-{
-	int		fd;
-	int		ret;
-	char	*line;
-	t_list	*lst;
-	t_tab	*tab;
-
-	if ((!filepath) || ((fd = open(filepath, O_RDONLY) == -1)))
-		return (NULL);
-	lst = NULL;
-	while ((ret = ft_get_next_line(fd, &line)))
-	{
-		ft_lstpush_back(&lst, ft_lstnewstr(line));
-		free(line);
-	}
-	if (!(tab = malloc(sizeof(*tab))))
-		return (NULL);
-	tab->tab = malloc(sizeof(int) * (gettab_size(lst)));
-	if (!tab->tab)
-	{
-		free(tab);
-		return (NULL);
-	}
-	load_tab(tab, lst);
-	ft_lstdel(&lst, ft_lstpulverisator);
-	return (tab);
-}
+#include <unistd.h>
 
 static void		display(void)
 {
@@ -115,11 +52,25 @@ static void		display(void)
 
 int				main(int ac, char **av)
 {
-	display();
+	t_map	*map;
+	int		fd;
+
+	map = NULL;
+	(void)display;
 	if (ac > 1)
 	{
-		(void)gettab_size;
-		(void)gettab;
+		fd = open(av[1], O_RDONLY);
+		if (fd >= 0)
+		{
+			map = reader(fd);
+			if (map)
+			{
+				ft_printf("tab size: %d", (int)map->size);
+			}
+			else
+				ft_putendl("error bordel !");
+			close(fd);
+		}
 		(void)av;
 	}
 	return (0);
