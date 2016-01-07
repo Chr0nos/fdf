@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 17:38:37 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/07 16:23:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/07 17:17:57 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct	s_map
 	size_t		size;
 }				t_map;
 
-
+int				cleaner(t_map **map);
 t_map			*reader(int fd);
 int				main(int ac, char **av);
 
