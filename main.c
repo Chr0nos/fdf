@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/07 16:54:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/07 17:18:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int				main(int ac, char **av)
 			if (map)
 			{
 				ft_printf("tab size: %d", (int)map->size);
+				cleaner(&map);
 			}
 			else
 				ft_putendl("error bordel !");
