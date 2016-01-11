@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/04 22:15:31 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/11 17:02:28 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ void			draw_loop(t_mlx *x);
 void			draw_clear(t_mlx *x);
 int				draw_get_px(t_mlx *x, const t_point *point);
 t_mlx			*draw_init(char *name, int width, int height);
+void			draw_sethook(t_mlx *x, int (*f)(int, void*), void *userdata);
 
 #endif

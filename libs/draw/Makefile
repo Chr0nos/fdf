@@ -28,7 +28,8 @@ OBJ=draw_line.o \
 	draw_putpoint.o \
 	draw_reset_image.o \
 	draw_loop.o \
-	draw_clear.o
+	draw_clear.o \
+	draw_sethook.o
 
 all: $(NAME)
 
