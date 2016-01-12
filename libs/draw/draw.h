@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/12 11:41:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/12 13:21:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,26 @@
 # define COLOR_BLUE 0x0000ff
 # define COLOR_RED 0xff0000
 # define COLOR_GREEN 0x00ff00
+# define COLOR_PURPLE 0x9900cc
+# define COLOR_CYAN 0x00ccff
+# define COLOR_YELLOW 0xffff00
+# define COLOR_BROWN 0x220000
 # define COLOR_BLACK 0
+
+enum			e_keycode
+{
+	M_ESC = 53,
+	L_ESC =	65307,
+	L_NEXT = 65363,
+	L_PREV = 65361,
+	L_DOWN = 65364,
+	L_UP = 65362,
+	L_ENTER = 65293,
+	L_DEL = 65288,
+	L_MORE = 65451,
+	L_LESS = 65453,
+	L_SHIFT = 65505
+};
 
 typedef struct	s_tab
 {
