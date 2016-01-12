@@ -6,14 +6,14 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 14:13:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/03 22:21:55 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/12 11:23:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 #include "libft.h"
 
-void	draw_px(t_mlx *x, t_point *point, int color)
+void	draw_px(t_mlx *x, const t_point *point, int color)
 {
 	int			octet;
 	int			position;

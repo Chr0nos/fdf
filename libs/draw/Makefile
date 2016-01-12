@@ -6,7 +6,7 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/29 12:33:23 by snicolet          #+#    #+#              #
-#*   Updated: 2016/01/05 00:00:43 by snicolet         ###   ########.fr       *#
+#*   Updated: 2016/01/12 11:28:08 by snicolet         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,12 @@ OBJ=draw_line.o \
 	draw_make_line.o \
 	draw_make_rect.o \
 	draw_make_circle.o \
+	draw_make_px.o \
 	draw_putpoint.o \
 	draw_reset_image.o \
 	draw_loop.o \
-	draw_clear.o
+	draw_clear.o \
+	draw_perimeter.o
 
 all: $(NAME)
 
