@@ -1,34 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   draw_sethook.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/28 17:38:37 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/07 17:17:57 by snicolet         ###   ########.fr       */
+/*   Created: 2016/01/11 16:58:22 by snicolet          #+#    #+#             */
+/*   Updated: 2016/01/11 17:04:28 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
-# include <string.h>
-# include "draw.h"
+#include "draw.h"
+#include "mlx.h"
 
-typedef struct	s_line_read
+void	draw_sethook(t_mlx *x, int (*f)(int, void*), void *userdata)
 {
-	int			*values;
-	size_t		size;
-}				t_line_read;
-
-typedef struct	s_map
-{
-	t_line_read	*lines;
-	size_t		size;
-}				t_map;
-
-int				cleaner(t_map **map);
-t_map			*reader(int fd);
-int				main(int ac, char **av);
-
-#endif
+	mlx_key_hook(x->winptr, f, userdata);
+}

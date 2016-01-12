@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 12:28:53 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/04 17:24:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/06 18:09:32 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	draw_vertical_line(t_mlx *x, t_line *line, int color, int variance)
 
 static void	draw_line_bresemham(t_mlx *x, t_line *line, int color, t_point *var)
 {
-	float			e[3];
+	float			e[2];
 	t_point			point;
 
 	ft_memcpy(&point, &line->start, sizeof(t_point));
@@ -48,7 +48,6 @@ static void	draw_line_bresemham(t_mlx *x, t_line *line, int color, t_point *var)
 	e[1] = (float)(line->dy) / (float)(line->dx);
 	if (e[1] < 0.0f)
 		e[1] *= -1.0f;
-	e[2] = -1.0f;
 	while (point.x != line->end.x)
 	{
 		draw_px(x, &point, color);
@@ -56,7 +55,7 @@ static void	draw_line_bresemham(t_mlx *x, t_line *line, int color, t_point *var)
 		while (e[0] >= 0)
 		{
 			draw_px(x,&point, color);
-			e[0] += e[2];
+			e[0] += -1.0f;
 			point.y += var->y;
 		}
 		point.x += var->x;

@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/04 17:12:28 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/11 17:06:19 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,111 +16,85 @@
 #include <string.h>
 #include <fcntl.h>
 #include <stdlib.h>
+#include <unistd.h>
 
-static void		load_tab(t_tab *tab, t_list *lst)
+static void		displayi(t_mlx *x, t_map *map)
 {
-	unsigned int	p;
-	unsigned int	p2;
-	char			**split;
+	int		line;
+	int		col;
+	t_line	dline;
+	t_point	start;
+	int		value;
 
-	p = 0;
-	split = NULL;
-	while ((lst) && (!(p2 = 0)))
+	line = 0;
+	while (line < (int)map->size)
 	{
-		split = ft_strsplit((char *)(lst->content), ' ');
-		while (split[p2])
+		col = 0;
+		start.y = 10 + line * 40;
+		while (col < (int)map->lines[line].size)
 		{
-			tab->tab[p++] = ft_atoi(split[p2]);
-			free(split[p2++]);
+			value = map->lines[line].values[col];
+			ft_printf("value: %d\n", value);
+			start.x = 10 + col * 40;
+			dline = draw_make_line(start.x,	start.y,
+					start.x + 40, start.y + 40);
+			draw_line(x, &dline, COLOR_GREEN);
+
+			dline = draw_make_line(start.x, start.y + 40,
+					start.x + 20, start.y + 40);
+			draw_line(x, &dline, COLOR_WHITE);
+			col++;
 		}
-		lst = lst->next;
+		line++;
 	}
-	tab->size = p;
 }
 
-static size_t	gettab_size(t_list *lst)
-{
-	size_t	size;
-
-	size = 0;
-	while (lst)
-	{
-		size += ft_strcount((char*)lst->content, ' ') + 1;
-		lst = lst->next;
-	}
-	ft_printf("shit size: %d\n", (int)size);
-	return (size);
-}
-
-static t_tab	*gettab(char *filepath)
-{
-	int		fd;
-	int		ret;
-	char	*line;
-	t_list	*lst;
-	t_tab	*tab;
-
-	if ((!filepath) || ((fd = open(filepath, O_RDONLY) == -1)))
-		return (NULL);
-	lst = NULL;
-	while ((ret = ft_get_next_line(fd, &line)))
-	{
-		ft_lstpush_back(&lst, ft_lstnewstr(line));
-		free(line);
-	}
-	if (!(tab = malloc(sizeof(*tab))))
-		return (NULL);
-	tab->tab = malloc(sizeof(int) * (gettab_size(lst)));
-	if (!tab->tab)
-	{
-		free(tab);
-		return (NULL);
-	}
-	load_tab(tab, lst);
-	ft_lstdel(&lst, ft_lstpulverisator);
-	return (tab);
-}
-
-static void		display(void)
+static int		key_hook(int keycode, void *userdata)
 {
 	t_mlx	*x;
-	t_line	a;
-	t_rect	r;
-	char	name[20];
 
-	ft_strcpy(name, "Coucou");
-	x = draw_init(name, 800, 600);
-	draw_reset_image(x, 0x003030);
-	r = draw_make_rect(50, 50, 200, 200);
-	draw_rect_fill(x, &r, 0x000f10);
-	//en bas a droite
-	a = draw_make_line(100, 100, 800, 600);
-	draw_line(x, &a, COLOR_WHITE);
-	//en bas a gauche
-	a = draw_make_line(100, 100, 0, 600);
-	draw_line(x, &a, COLOR_BLUE);
-	//en haut a droite
-	a = draw_make_line(100, 100, 800, 0);
-	draw_line(x, &a, COLOR_GREEN);
-	//en haut a gauche
-	a = draw_make_line(100, 100, 0, 0);
-	draw_line(x, &a, COLOR_RED);
+	x = (t_mlx*)userdata;
+	if (keycode == 53)
+		exit(0);
+	return (0);
+}
 
-	r = draw_make_rect(50, 50, 200, 200);
-	draw_rect(x, &r, 0xa0f0c0);
+static void		display(t_map *map)
+{
+	t_mlx	*x;
+
+	x = draw_init("fdf", 800, 600);
 	draw_flush_image(x, x->img);
-	//draw_clear(x);
+	displayi(x, map);
+	draw_flush_image(x, x->img);
+	draw_sethook(x, &key_hook, x);
 	draw_loop(x);
 }
 
 int				main(int ac, char **av)
 {
-	display();
+	t_map	*map;
+	int		fd;
+
+	map = NULL;
 	if (ac > 1)
 	{
-		(void)gettab_size;
-		(void)gettab;
-		(void)av;
+		fd = open(av[1], O_RDONLY);
+		if (fd >= 0)
+		{
+			map = reader(fd);
+			close(fd);
+			if (map)
+			{
+				ft_printf("tab size: %d", (int)map->size);
+				display(map);
+				cleaner(&map);
+			}
+			else
+				ft_putendl("error bordel !");
+		}
+		else
+			ft_putendl("error while opening file.");
 	}
 	return (0);
 }

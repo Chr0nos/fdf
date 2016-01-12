@@ -14,12 +14,14 @@ CC=clang
 FLAGS=-Wall -Werror -Wextra -Weverything
 LIBFT=./libs/libft
 DRAW_PATH=./libs/draw/
-MLX=./libs/minilibx
-X11=-lXext -lX11 -lm
-LIBS=-L$(DRAW_PATH) -ldraw -L$(LIBFT) -lft $(X11) -L $(MLX) -lmlx
+MLX=../minilibx_macos
+MLXFLAGS_LINUX=-lXext -lX11 -lm
+MLX_FLAGS_MAC=-lm -framework OpenGL -framework AppKit
+MLX_FLAGS=$(MLX_FLAGS_MAC)
+LIBS=-L$(DRAW_PATH) -ldraw -L$(LIBFT) -lft $(MLX_FLAGS) -L ./libs/minilibx_macos -lmlx
 INCLUDES=-I$(LIBFT) -I$(DRAW_PATH) -I.
 
-OBJ=main.o
+OBJ=main.o reader.o
 NAME=fdf
 
 all: $(NAME)
@@ -28,7 +30,7 @@ prename: $(OBJ)
 
 $(NAME): $(OBJ)
 	make -C $(LIBFT) EXTRA_FLAGS= BTREE=
-	make -C $(DRAW_PATH) FLAGS="$(FLAGS)" LIBFT=../libft/
+	make -C $(DRAW_PATH) FLAGS="$(FLAGS)" LIBFT=../libft/ MLX=$(MLX)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME) $(LIBS)
 
 %.o: %.c
