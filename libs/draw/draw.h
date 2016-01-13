@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/13 18:45:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/13 20:43:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ void			draw_rect(t_mlx *x, t_rect *rect, int color);
 void			draw_rect_fill(t_mlx *x, t_rect *rect, int color);
 void			draw_rect_mist(t_mlx *x, const t_rect *rect, size_t pixels,
 		int color);
+void			draw_rect_invert(t_mlx *x, const t_rect *r);
 void			draw_line(t_mlx *x, t_line *line, int color);
 void			draw_grid(t_mlx *x, t_tab *tab);
 void			draw_box(t_mlx *x, t_rect *rect, int color);

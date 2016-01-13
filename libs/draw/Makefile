@@ -16,7 +16,7 @@ LIBFT=../libft/
 MLX=../minilibx
 NAME=libdraw.a
 OBJ=draw_line.o \
-	draw_rect.o draw_rect_fill.o draw_rect_mist.o \
+	draw_rect.o draw_rect_fill.o draw_rect_mist.o draw_rect_invert.o \
 	draw_circle.o \
 	draw_px.o draw_get_px.o \
 	draw_new_image.o \

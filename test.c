@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 18:10:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/13 18:37:09 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/13 21:43:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@ static void	display_mist(t_mlx *x)
 	t_rect	r;
 
 	r = draw_make_rect(400, 300, 600, 400);
+	draw_rect_fill(x, &r, 0x001010);
 	draw_rect_mist(x, &r, 42, COLOR_GREEN);
 	draw_rect_mist(x, &r, 1, COLOR_WHITE);
+	draw_rect(x, &r, COLOR_RED);
+	r = draw_make_rect(800, 300, 900, 400);
+	draw_rect_invert(x, &r);
 }
 
 static void	display_circle(t_mlx *x)
@@ -35,7 +39,7 @@ static void	display_circle(t_mlx *x)
 static int	display(t_mlx *x)
 {
 	static float	time = 30.0f;
-	static float	sens = 0.012f * 1.5f;
+	static float	sens = 0.012f * 0.5f;
 	t_point			tab[4];
 	t_matrix		m;
 	t_vector		scale;
@@ -54,10 +58,11 @@ static int	display(t_mlx *x)
 		tab[p] = draw_make_px(px[p], py[p]);
 	draw_matrix_topxtab(tab, 4, &m);
 	draw_perimeter(x, tab, 4, COLOR_GREEN);
+	//draw_pxtab(x, tab, 4, COLOR_GREEN);
 	time += sens;
 	display_circle(x);
 	draw_flush_image(x, x->img);
-	usleep(12000);
+	usleep(6000);
 	return (0);
 }
 
