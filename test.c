@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 18:10:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/13 18:29:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/13 18:37:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	display_mist(t_mlx *x)
 
 	r = draw_make_rect(400, 300, 600, 400);
 	draw_rect_mist(x, &r, 42, COLOR_GREEN);
+	draw_rect_mist(x, &r, 1, COLOR_WHITE);
 }
 
 static void	display_circle(t_mlx *x)

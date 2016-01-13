@@ -36,7 +36,8 @@ OBJ=draw_line.o \
 	draw_make_matrix.o \
 	draw_make_vector.o \
 	draw_matrix_multiply.o \
-	draw_matrix_topxtab.o
+	draw_matrix_topxtab.o \
+	draw_pxtab.o
 
 all: $(NAME)
 
