@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/12 13:21:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/12 15:04:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ void			draw_flush_image(t_mlx *x, t_mlx_img *img);
 void			draw_reset_image(t_mlx *x, int color);
 void			draw_loop(t_mlx *x);
 void			draw_clear(t_mlx *x);
+t_point			*draw_rotate_pxmap(t_point *map, size_t size, int angle,
+		t_point center);
 void			draw_perimeter(t_mlx *x, const t_point *tab, size_t size,
 		int color);
 int				draw_get_px(t_mlx *x, const t_point *point);

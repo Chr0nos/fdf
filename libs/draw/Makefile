@@ -6,12 +6,12 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/29 12:33:23 by snicolet          #+#    #+#              #
-#*   Updated: 2016/01/12 11:42:39 by snicolet         ###   ########.fr       *#
+#*   Updated: 2016/01/12 15:08:51 by snicolet         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 CC=clang
-FLAGS=-Wall -Wextra -Weverything
+FLAGS=-Wall -Wextra -Werror -Weverything
 LIBFT=../libft/
 MLX=../minilibx
 NAME=libdraw.a
@@ -31,7 +31,8 @@ OBJ=draw_line.o \
 	draw_loop.o \
 	draw_clear.o \
 	draw_perimeter.o \
-	draw_sethook.o
+	draw_sethook.o \
+	draw_rotate_pxmap.o
 
 all: $(NAME)
 
