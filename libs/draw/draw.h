@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/13 14:30:49 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/13 15:06:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ int				draw_get_px(t_mlx *x, const t_point *point);
 t_mlx			*draw_init(char *name, int width, int height);
 void			draw_sethook(t_mlx *x, int (*f)(int, void*), void *userdata);
 t_point			*draw_move_pxlist(t_point *tab, size_t size, int x, int y);
+t_point			*draw_matrix_topxtab(t_point *tab, size_t size, t_matrix *t);
 t_vector		draw_matrix_multiply(t_vector point, t_matrix *t);
 
 #endif
