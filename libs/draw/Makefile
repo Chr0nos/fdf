@@ -31,7 +31,11 @@ OBJ=draw_line.o \
 	draw_loop.o \
 	draw_clear.o \
 	draw_perimeter.o \
-	draw_sethook.o
+	draw_sethook.o \
+	draw_move_pxlist.o \
+	draw_make_matrix.o \
+	draw_make_vector.o \
+	draw_matrix_multiply.o
 
 all: $(NAME)
 

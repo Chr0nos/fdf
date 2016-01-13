@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/12 13:21:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/13 14:30:49 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,20 @@ typedef struct	s_point
 	int			y;
 }				t_point;
 
+typedef struct	s_draw_vector
+{
+	float		x;
+	float		y;
+	float		z;
+}				t_vector;
+
+typedef struct	s_matrix
+{
+	t_vector	x;
+	t_vector	y;
+	t_vector	z;
+}				t_matrix;
+
 typedef struct	s_area
 {
 	t_point		start;
@@ -91,6 +105,8 @@ typedef struct	s_mlx
 	int			height;
 }				t_mlx;
 
+t_matrix		draw_make_matrix(t_vector pos, float rad, t_vector scale);
+t_vector		draw_make_vector(float x, float y, float z);
 t_line			draw_make_line(int x1, int y1, int x2, int y2);
 t_rect			draw_make_rect(int x1, int y1, int x2, int y2);
 t_circle		draw_make_circle(int x1, int y1, int radius);
@@ -115,5 +131,7 @@ void			draw_perimeter(t_mlx *x, const t_point *tab, size_t size,
 int				draw_get_px(t_mlx *x, const t_point *point);
 t_mlx			*draw_init(char *name, int width, int height);
 void			draw_sethook(t_mlx *x, int (*f)(int, void*), void *userdata);
+t_point			*draw_move_pxlist(t_point *tab, size_t size, int x, int y);
+t_vector		draw_matrix_multiply(t_vector point, t_matrix *t);
 
 #endif
