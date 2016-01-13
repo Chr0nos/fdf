@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 14:13:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/12 11:23:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/13 21:51:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	draw_px(t_mlx *x, const t_point *point, int color)
 	int			octet;
 	int			position;
 
-	//ft_printf("putting pixel: x: %d --- y: %d\n", point->x, point->y);
 	octet = x->img->bpp / 8;
 	position = (x->img->width * point->y) + (point->x * octet);
 	if (ft_memcmp(x->img->data + position, &color, (unsigned)octet) != 0)
