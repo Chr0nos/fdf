@@ -6,7 +6,7 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/28 16:24:25 by snicolet          #+#    #+#              #
-#*   Updated: 2016/01/05 00:01:50 by snicolet         ###   ########.fr       *#
+#*   Updated: 2016/01/12 11:45:25 by snicolet         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@ CC=clang
 FLAGS=-Wall -Werror -Wextra -Weverything
 LIBFT=./libs/libft
 DRAW_PATH=./libs/draw/
-MLX=../minilibx_macos
-MLXFLAGS_LINUX=-lXext -lX11 -lm
-MLX_FLAGS_MAC=-lm -framework OpenGL -framework AppKit
-MLX_FLAGS=$(MLX_FLAGS_MAC)
-LIBS=-L$(DRAW_PATH) -ldraw -L$(LIBFT) -lft $(MLX_FLAGS) -L ./libs/minilibx_macos -lmlx
+MLX=../minilibx
+MLX_FLAGS_LINUX=-lXext -lX11 -lm -L ./libs/minilibx
+MLX_FLAGS_MAC=-lm -framework OpenGL -framework AppKit -L ./libs/minilibx_macos
+MLX_FLAGS=$(MLX_FLAGS_LINUX)
+LIBS=-L$(DRAW_PATH) -ldraw -L$(LIBFT) -lft $(MLX_FLAGS) -lmlx
 INCLUDES=-I$(LIBFT) -I$(DRAW_PATH) -I.
 
 OBJ=main.o reader.o

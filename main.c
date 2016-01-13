@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/11 17:07:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/13 13:35:00 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,13 @@ static int		key_hook(int keycode, void *userdata)
 	t_mlx	*x;
 
 	x = (t_mlx*)userdata;
-	if (keycode == 53)
+	if ((keycode == 53) || (keycode == 65307))
 		exit(0);
+	else
+	{
+		ft_putnbr(keycode);
+		ft_putchar('\n');
+	}
 	return (0);
 }
 
