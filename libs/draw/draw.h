@@ -6,22 +6,40 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/13 21:55:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/14 02:23:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DRAW_H
 # define DRAW_H
 # include <string.h>
-# define COLOR_WHITE 0xffffff
-# define COLOR_BLUE 0x0000ff
-# define COLOR_RED 0xff0000
-# define COLOR_GREEN 0x00ff00
-# define COLOR_PURPLE 0x9900cc
-# define COLOR_CYAN 0x00ccff
-# define COLOR_YELLOW 0xffff00
-# define COLOR_BROWN 0x220000
-# define COLOR_BLACK 0
+# define DRAW_SCALE 16
+# define DRAW_V_FI(x) (int)((x) * (1 << DRAW_SCALE))
+# define DRAW_V_FF(x) (int)((float)(x) / (float)(1.0f << DRAW_SCALE))
+# define DRAW_V_FD(x) (int)((x) * (double)(1 << DRAW_SCALE))
+# define DRAW_V_REAL(x) ((x) >> DRAW_SCALE)
+# define DRAW_V_FLOAT(x) ((x) << DRAW_SCALE)
+# define DRAW_V_MUL_SLOW(x, y) ((long long)(x) * (long long)(y)) >> DRAW_SCALE
+# define DRAW_V_MUL(x, y) ((((x) >> 8) * ((y) >> 8)) >> 0)
+# define DRAW_V_DIV(x, y) (((x) << 8) / (y) << 8)
+# define DRAW_FRACTION_MASK 0xffffffff >> (32 - SCALE)
+# define DRAW_FRACTION(x) ((x) & DRAW_FRACTION_MASK)
+# define DRAW_V_TD(x) (double)((double)(x) / ((double)(1 << DRAW_SCALE)))
+# define DRAW_WHOLE_MASK ~DRAW_FRACTION_MASK
+# define DRAW_WHOLE(x) ((x) & DRAW_WHOLE_MASK)
+
+enum			e_color
+{
+	COLOR_WHITE = 0xffffff,
+	COLOR_BLUE = 0x0000ff,
+	COLOR_RED = 0xff0000,
+	COLOR_GREEN = 0x00ff00,
+	COLOR_PURPLE = 0x9900cc,
+	COLOR_CYAN = 0x00ccff,
+	COLOR_YELLOW = 0xffff00,
+	COLOR_BROWN = 0x220000,
+	COLOR_BLACK = 0
+};
 
 enum			e_keycode
 {
