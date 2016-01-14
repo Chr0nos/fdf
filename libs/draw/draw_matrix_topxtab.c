@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_rect_fill.c                                   :+:      :+:    :+:   */
+/*   draw_matrix_topxtab.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/03 23:16:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/13 21:52:16 by snicolet         ###   ########.fr       */
+/*   Created: 2016/01/13 14:58:28 by snicolet          #+#    #+#             */
+/*   Updated: 2016/01/13 15:06:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
-#include "libft.h"
+#include <string.h>
+#include <math.h>
 
-void	draw_rect_fill(t_mlx *x, t_rect *rect, int color)
+t_point		*draw_matrix_topxtab(t_point *tab, size_t size, t_matrix *t)
 {
-	t_line		line;
-	const int	m = (rect->end.y - rect->start.y < 0) ? -1 : 1;
+	size_t		p;
+	t_vector	v;
 
-	line = draw_make_line(rect->start.x, rect->start.y,
-			rect->end.x, rect->start.y);
-	while (line.start.y != rect->end.y)
+	p = 0;
+	while (p < size)
 	{
-		draw_line(x, &line, color);
-		line.start.y += m;
-		line.end.y += m;
+		v = draw_make_vector((float)tab[p].x, (float)tab[p].y, 0.0f);
+		v = draw_matrix_multiply(v, t);
+		tab[p].x = (int)lroundf(v.x);
+		tab[p].y = (int)lroundf(v.y);
+		p++;
 	}
-	draw_line(x, &line, color);
+	return (tab);
 }

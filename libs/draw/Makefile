@@ -6,7 +6,7 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/29 12:33:23 by snicolet          #+#    #+#              #
-#*   Updated: 2016/01/12 15:08:51 by snicolet         ###   ########.fr       *#
+#*   Updated: 2016/01/14 11:21:02 by snicolet         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LIBFT=../libft/
 MLX=../minilibx
 NAME=libdraw.a
 OBJ=draw_line.o \
-	draw_rect.o draw_rect_fill.o draw_rect_mist.o \
+	draw_rect.o draw_rect_fill.o draw_rect_mist.o draw_rect_invert.o \
 	draw_circle.o \
 	draw_px.o draw_get_px.o \
 	draw_new_image.o \
@@ -32,7 +32,12 @@ OBJ=draw_line.o \
 	draw_clear.o \
 	draw_perimeter.o \
 	draw_sethook.o \
-	draw_rotate_pxmap.o
+	draw_move_pxlist.o \
+	draw_make_matrix.o \
+	draw_make_vector.o \
+	draw_matrix_multiply.o \
+	draw_matrix_topxtab.o \
+	draw_pxtab.o
 
 all: $(NAME)
 

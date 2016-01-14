@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_rect_fill.c                                   :+:      :+:    :+:   */
+/*   draw_pxtab.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/03 23:16:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/13 21:52:16 by snicolet         ###   ########.fr       */
+/*   Created: 2016/01/13 18:42:47 by snicolet          #+#    #+#             */
+/*   Updated: 2016/01/13 18:46:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
-#include "libft.h"
+#include <string.h>
 
-void	draw_rect_fill(t_mlx *x, t_rect *rect, int color)
+void	draw_pxtab(t_mlx *x, t_point *tab, size_t size, int color)
 {
-	t_line		line;
-	const int	m = (rect->end.y - rect->start.y < 0) ? -1 : 1;
+	size_t	p;
 
-	line = draw_make_line(rect->start.x, rect->start.y,
-			rect->end.x, rect->start.y);
-	while (line.start.y != rect->end.y)
+	p = 0;
+	while (p < size)
 	{
-		draw_line(x, &line, color);
-		line.start.y += m;
-		line.end.y += m;
+		draw_px(x, &tab[p], color);
+		p++;
 	}
-	draw_line(x, &line, color);
 }

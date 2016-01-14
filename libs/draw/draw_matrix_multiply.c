@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_rect_fill.c                                   :+:      :+:    :+:   */
+/*   draw_matrix_multiply.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/03 23:16:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/13 21:52:16 by snicolet         ###   ########.fr       */
+/*   Created: 2016/01/13 14:21:04 by snicolet          #+#    #+#             */
+/*   Updated: 2016/01/14 12:46:49 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
-#include "libft.h"
 
-void	draw_rect_fill(t_mlx *x, t_rect *rect, int color)
+t_vector	draw_matrix_multiply(t_vector point, t_matrix *t)
 {
-	t_line		line;
-	const int	m = (rect->end.y - rect->start.y < 0) ? -1 : 1;
+	t_vector	v;
 
-	line = draw_make_line(rect->start.x, rect->start.y,
-			rect->end.x, rect->start.y);
-	while (line.start.y != rect->end.y)
-	{
-		draw_line(x, &line, color);
-		line.start.y += m;
-		line.end.y += m;
-	}
-	draw_line(x, &line, color);
+	v = draw_make_vector((t->x.x * point.x) + (t->x.y * point.y) + t->offset.x,
+			(t->y.x * point.x) + (t->y.y * point.y) + t->offset.y,
+			point.z);
+	return (v);
 }

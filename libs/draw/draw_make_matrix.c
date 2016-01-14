@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_rect_fill.c                                   :+:      :+:    :+:   */
+/*   draw_make_matrix.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/03 23:16:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/13 21:52:16 by snicolet         ###   ########.fr       */
+/*   Created: 2016/01/13 14:02:31 by snicolet          #+#    #+#             */
+/*   Updated: 2016/01/14 12:48:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
-#include "libft.h"
+#include <math.h>
 
-void	draw_rect_fill(t_mlx *x, t_rect *rect, int color)
+t_matrix	draw_make_matrix(t_vector pos, float rad, t_vector scale)
 {
-	t_line		line;
-	const int	m = (rect->end.y - rect->start.y < 0) ? -1 : 1;
+	t_matrix	m;
 
-	line = draw_make_line(rect->start.x, rect->start.y,
-			rect->end.x, rect->start.y);
-	while (line.start.y != rect->end.y)
-	{
-		draw_line(x, &line, color);
-		line.start.y += m;
-		line.end.y += m;
-	}
-	draw_line(x, &line, color);
+	m.x = draw_make_vector(cosf(rad) * scale.x, -sinf(rad) * scale.x, 1.0f);
+	m.y = draw_make_vector(sinf(rad) * scale.y, cosf(rad) * scale.y, 1.0f);
+	m.z = draw_make_vector(1.0f ,1.0f, 1.0f);
+	m.offset = pos;
+	return (m);
 }

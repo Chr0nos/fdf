@@ -6,27 +6,45 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/12 15:04:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/14 12:38:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DRAW_H
 # define DRAW_H
 # include <string.h>
-# define COLOR_WHITE 0xffffff
-# define COLOR_BLUE 0x0000ff
-# define COLOR_RED 0xff0000
-# define COLOR_GREEN 0x00ff00
-# define COLOR_PURPLE 0x9900cc
-# define COLOR_CYAN 0x00ccff
-# define COLOR_YELLOW 0xffff00
-# define COLOR_BROWN 0x220000
-# define COLOR_BLACK 0
+# define DRAW_SCALE 16
+# define DRAW_V_FI(x) (int)((x) * (1 << DRAW_SCALE))
+# define DRAW_V_FF(x) (int)((float)(x) / (float)(1.0f << DRAW_SCALE))
+# define DRAW_V_FD(x) (int)((x) * (double)(1 << DRAW_SCALE))
+# define DRAW_V_REAL(x) ((x) >> DRAW_SCALE)
+# define DRAW_V_FLOAT(x) ((x) << DRAW_SCALE)
+# define DRAW_V_MUL_SLOW(x, y) ((long long)(x) * (long long)(y)) >> DRAW_SCALE
+# define DRAW_V_MUL(x, y) ((((x) >> 8) * ((y) >> 8)) >> 0)
+# define DRAW_V_DIV(x, y) (((x) << 8) / (y) << 8)
+# define DRAW_FRACTION_MASK 0xffffffff >> (32 - SCALE)
+# define DRAW_FRACTION(x) ((x) & DRAW_FRACTION_MASK)
+# define DRAW_V_TD(x) (double)((double)(x) / ((double)(1 << DRAW_SCALE)))
+# define DRAW_WHOLE_MASK ~DRAW_FRACTION_MASK
+# define DRAW_WHOLE(x) ((x) & DRAW_WHOLE_MASK)
+
+enum			e_color
+{
+	COLOR_WHITE = 0xffffff,
+	COLOR_BLUE = 0x0000ff,
+	COLOR_RED = 0xff0000,
+	COLOR_GREEN = 0x00ff00,
+	COLOR_PURPLE = 0x9900cc,
+	COLOR_CYAN = 0x00ccff,
+	COLOR_YELLOW = 0xffff00,
+	COLOR_BROWN = 0x220000,
+	COLOR_BLACK = 0
+};
 
 enum			e_keycode
 {
 	M_ESC = 53,
-	L_ESC =	65307,
+	L_ESC = 65307,
 	L_NEXT = 65363,
 	L_PREV = 65361,
 	L_DOWN = 65364,
@@ -50,6 +68,21 @@ typedef struct	s_point
 	int			x;
 	int			y;
 }				t_point;
+
+typedef struct	s_draw_vector
+{
+	float		x;
+	float		y;
+	float		z;
+}				t_vector;
+
+typedef struct	s_matrix
+{
+	t_vector	x;
+	t_vector	y;
+	t_vector	z;
+	t_vector	offset;
+}				t_matrix;
 
 typedef struct	s_area
 {
@@ -91,6 +124,8 @@ typedef struct	s_mlx
 	int			height;
 }				t_mlx;
 
+t_matrix		draw_make_matrix(t_vector pos, float rad, t_vector scale);
+t_vector		draw_make_vector(float x, float y, float z);
 t_line			draw_make_line(int x1, int y1, int x2, int y2);
 t_rect			draw_make_rect(int x1, int y1, int x2, int y2);
 t_circle		draw_make_circle(int x1, int y1, int radius);
@@ -101,6 +136,7 @@ void			draw_rect(t_mlx *x, t_rect *rect, int color);
 void			draw_rect_fill(t_mlx *x, t_rect *rect, int color);
 void			draw_rect_mist(t_mlx *x, const t_rect *rect, size_t pixels,
 		int color);
+void			draw_rect_invert(t_mlx *x, const t_rect *r);
 void			draw_line(t_mlx *x, t_line *line, int color);
 void			draw_grid(t_mlx *x, t_tab *tab);
 void			draw_box(t_mlx *x, t_rect *rect, int color);
@@ -110,12 +146,14 @@ void			draw_flush_image(t_mlx *x, t_mlx_img *img);
 void			draw_reset_image(t_mlx *x, int color);
 void			draw_loop(t_mlx *x);
 void			draw_clear(t_mlx *x);
-t_point			*draw_rotate_pxmap(t_point *map, size_t size, int angle,
-		t_point center);
 void			draw_perimeter(t_mlx *x, const t_point *tab, size_t size,
 		int color);
+void			draw_pxtab(t_mlx *x, t_point *tab, size_t size, int color);
 int				draw_get_px(t_mlx *x, const t_point *point);
 t_mlx			*draw_init(char *name, int width, int height);
 void			draw_sethook(t_mlx *x, int (*f)(int, void*), void *userdata);
+t_point			*draw_move_pxlist(t_point *tab, size_t size, int x, int y);
+t_point			*draw_matrix_topxtab(t_point *tab, size_t size, t_matrix *t);
+t_vector		draw_matrix_multiply(t_vector point, t_matrix *t);
 
 #endif
