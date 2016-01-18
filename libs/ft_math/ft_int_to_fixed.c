@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_math.h                                          :+:      :+:    :+:   */
+/*   ft_int_to_fixed.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/18 11:58:55 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/18 15:36:28 by snicolet         ###   ########.fr       */
+/*   Created: 2016/01/18 15:33:12 by snicolet          #+#    #+#             */
+/*   Updated: 2016/01/18 15:36:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MATH_H
-# define FT_MATH_H
-# define INTMAX 2147483647
-# define INTMIN -2147483648
+#include "ft_math.h"
 
-int		ft_double_to_fixed(double x, int scale);
-int		ft_fixed_to_real(int x, int scale);
-int		ft_fixed_decimal(int x, int scale);
-int		ft_int_to_fixed(int real, int decimal, int scale);
-
-#endif
+int		ft_int_to_fixed(int real, int decimal, int scale)
+{
+	return ((real << scale) | decimal << (31 - scale));
+}
