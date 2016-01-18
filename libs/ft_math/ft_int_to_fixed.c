@@ -14,5 +14,13 @@
 
 int		ft_int_to_fixed(int real, int decimal, int scale)
 {
-	return ((real << scale) | decimal);
+	const int	mask = 1 << (scale - 1);
+	int			shift;
+
+	if (!decimal)
+		return ((real << scale));
+	shift = 0;
+	while ((shift < scale) && (!((decimal << shift) & mask)))
+		shift++;
+	return ((real << scale) | (decimal << shift));
 }
