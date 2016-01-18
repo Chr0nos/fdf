@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 18:10:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/14 18:33:37 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/18 11:45:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	display(t_mlx *x)
 	if ((time > 40.0f) || (time <= 29.0f))
 		sens = -sens;
 	time += sens;
-	scale = draw_make_vector(1.0f * time / 2.4f, 1.0f * time / 2.4f, 5.0f);
+	//scale = draw_make_vector(1.0f * time / 2.4f, 1.0f * time / 2.4f, 5.0f);
 	scale = draw_make_vector(19.0f, 5.0f, 0.0f);
 	m = draw_make_matrix(draw_make_vector(512.0f, 384.0f, 0.0f), 1.0f + time, scale);
 	p = 4;

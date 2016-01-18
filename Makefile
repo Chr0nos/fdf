@@ -26,8 +26,6 @@ NAME=fdf
 
 all: $(NAME)
 
-prename: $(OBJ)
-
 $(NAME): $(OBJ)
 	make -C $(LIBFT) EXTRA_FLAGS= BTREE=
 	make -C $(DRAW_PATH) FLAGS="$(FLAGS)" LIBFT=../libft/ MLX=$(MLX)
@@ -37,7 +35,7 @@ $(NAME): $(OBJ)
 	$(CC) -c $< $(FLAGS) $(INCLUDES)
 
 clean:
-	rm -f $(OBJ)
+	$(RM) $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
