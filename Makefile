@@ -17,7 +17,7 @@ DRAW_PATH=./libs/draw/
 MLX=../minilibx
 MLX_FLAGS_LINUX=-lXext -lX11 -lm -L ./libs/minilibx
 MLX_FLAGS_MAC=-lm -framework OpenGL -framework AppKit -L ./libs/minilibx_macos
-MLX_FLAGS=$(MLX_FLAGS_LINUX)
+MLX_FLAGS=$(MLX_FLAGS_MAC)
 LIBS=-L$(DRAW_PATH) -ldraw -L$(LIBFT) -lft $(MLX_FLAGS) -lmlx
 INCLUDES=-I$(LIBFT) -I$(DRAW_PATH) -I.
 

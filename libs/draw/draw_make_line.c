@@ -6,21 +6,24 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 19:00:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/03 21:25:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/19 14:55:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
+#include "libft.h"
 
 t_line	draw_make_line(int x1, int y1, int x2, int y2)
 {
 	t_line	line;
 
+	//line.dx = ft_abs(x2 - x1);
+	//line.dy = ft_abs(y2 - y1);
 	line.dx = x2 - x1;
+	line.dy = y2 - y1;
 	line.start.x = x1;
 	line.start.y = y1;
 	line.end.x = x2;
 	line.end.y = y2;
-	line.dy = line.end.y - line.start.y;
 	return (line);
 }
