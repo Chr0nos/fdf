@@ -32,7 +32,6 @@ static void	draw_vertical_line(t_mlx *x, t_line line, int color, int variance)
 	}
 }
 
-
 static void	draw_line_bresemham(t_mlx *x, t_line line, int color, t_point *var)
 {
 	float			e[2];
@@ -54,6 +53,7 @@ static void	draw_line_bresemham(t_mlx *x, t_line line, int color, t_point *var)
 		line.start.x += var->x;
 	}
 }
+
 /*
 static void	draw_line_bresemham(t_mlx *x, t_line line, int color, t_point *var)
 {
@@ -61,10 +61,8 @@ static void	draw_line_bresemham(t_mlx *x, t_line line, int color, t_point *var)
 	int		err2;
 
 	err = ((line.dx > line.dy) ? line.dx : -line.dy) / 2;
-	ft_printf("err: %d\n", err);
 	while ((line.start.x != line.end.x) && (line.start.y != line.end.y))
 	{
-		ft_printf("%d %d\n", line.start.x, line.start.y);
 		draw_px(x, &line.start, color);
 		err2 = err;
 		if (err2 > -line.dx)
@@ -80,11 +78,11 @@ static void	draw_line_bresemham(t_mlx *x, t_line line, int color, t_point *var)
 	}
 }
 */
+
 void		draw_line(t_mlx *x, t_line *line, int color)
 {
 	t_point		variance;
 
-	ft_putendl("trace");
 	variance.x = (line->end.x - line->start.x < 0) ? -1 : 1;
 	variance.y = (line->end.y - line->start.y < 0) ? -1 : 1;
 	if ((line->dx == 0) && (line->dy == 0))
@@ -95,5 +93,4 @@ void		draw_line(t_mlx *x, t_line *line, int color)
 		draw_vertical_line(x, *line, color, variance.y);
 	else
 		draw_line_bresemham(x, *line, color, &variance);
-	ft_putendl("ligne ok");
 }

@@ -50,7 +50,6 @@ static int	display(t_mlx *x)
 	const int		px[4] = { -15, 15, 15, -15 };
 	const int		py[4] = { 15, 15, -15, -15 };
 
-	ft_putendl("DISPLAY");
 	draw_reset_image(x, 0x102010);
 	if ((time > 40.0f) || (time <= 29.0f))
 		sens = -sens;
@@ -66,7 +65,6 @@ static int	display(t_mlx *x)
 	//display_circle(x);
 	draw_flush_image(x, x->img);
 	usleep(6000);
-	ft_putendl("DISPLAY END");
 	return (0);
 }
 
@@ -74,10 +72,7 @@ int		main(void)
 {
 	t_mlx		*x;
 
-	ft_putendl("init !");
 	x = draw_init("test", 1024, 768);
-	ft_putendl("loop !");
-	display(x);
 	mlx_loop_hook(x->mlxptr, &display, x);
 	draw_loop(x);
 	return (0);
