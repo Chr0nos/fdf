@@ -6,27 +6,13 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/14 12:38:25 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/23 14:40:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DRAW_H
 # define DRAW_H
 # include <string.h>
-# define DRAW_SCALE 16
-# define DRAW_V_FI(x) (int)((x) * (1 << DRAW_SCALE))
-# define DRAW_V_FF(x) (int)((float)(x) / (float)(1.0f << DRAW_SCALE))
-# define DRAW_V_FD(x) (int)((x) * (double)(1 << DRAW_SCALE))
-# define DRAW_V_REAL(x) ((x) >> DRAW_SCALE)
-# define DRAW_V_FLOAT(x) ((x) << DRAW_SCALE)
-# define DRAW_V_MUL_SLOW(x, y) ((long long)(x) * (long long)(y)) >> DRAW_SCALE
-# define DRAW_V_MUL(x, y) ((((x) >> 8) * ((y) >> 8)) >> 0)
-# define DRAW_V_DIV(x, y) (((x) << 8) / (y) << 8)
-# define DRAW_FRACTION_MASK 0xffffffff >> (32 - SCALE)
-# define DRAW_FRACTION(x) ((x) & DRAW_FRACTION_MASK)
-# define DRAW_V_TD(x) (double)((double)(x) / ((double)(1 << DRAW_SCALE)))
-# define DRAW_WHOLE_MASK ~DRAW_FRACTION_MASK
-# define DRAW_WHOLE(x) ((x) & DRAW_WHOLE_MASK)
 
 enum			e_color
 {
@@ -124,7 +110,9 @@ typedef struct	s_mlx
 	int			height;
 }				t_mlx;
 
-t_matrix		draw_make_matrix(t_vector pos, float rad, t_vector scale);
+t_matrix		draw_make_matrix_x(t_vector pos, float rad, t_vector scale);
+t_matrix		draw_make_matrix_y(t_vector pos, float rad, t_vector scale);
+t_matrix		draw_make_matrix_z(t_vector pos, float rad, t_vector scale);
 t_vector		draw_make_vector(float x, float y, float z);
 t_line			draw_make_line(int x1, int y1, int x2, int y2);
 t_rect			draw_make_rect(int x1, int y1, int x2, int y2);
