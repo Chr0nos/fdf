@@ -21,7 +21,7 @@ MLX_FLAGS=$(MLX_FLAGS_MAC)
 LIBS=-L$(DRAW_PATH) -ldraw -L$(LIBFT) -lft $(MLX_FLAGS) -lmlx
 INCLUDES=-I$(LIBFT) -I$(DRAW_PATH) -I.
 
-OBJ=main.o reader.o
+OBJ=main.o parser.o
 NAME=fdf
 
 all: $(NAME)

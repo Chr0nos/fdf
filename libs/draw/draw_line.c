@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 12:28:53 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/19 15:03:52 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/22 16:29:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	draw_line_bresemham(t_mlx *x, t_line line, int color, t_point *varia
 	if (line.dy < 0)
 		line.dy = -line.dy;
 	err = -line.dx >> 1;
-	
+
 	while (line.start.x != line.end.x)
 	{
 		draw_px(x, &line.start, color);

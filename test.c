@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 18:10:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/19 15:05:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/23 15:00:23 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	display(t_mlx *x)
 		sens = -sens;
 	time += sens;
 	scale = draw_make_vector(19.0f, 5.0f, 0.0f);
-	m = draw_make_matrix(draw_make_vector(512.0f, 384.0f, 0.0f), 1.0f + time, scale);
+	m = draw_make_matrix_z(draw_make_vector(512.0f, 384.0f, 0.0f), 1.0f + time, scale);
 	p = 4;
 	while (p--)
 		tab[p] = draw_make_px(px[p], py[p]);
