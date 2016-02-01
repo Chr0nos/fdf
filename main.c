@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/01 16:46:06 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/01 18:52:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,37 @@ static int		key_hook(int keycode, void *userdata)
 	return (0);
 }
 
+static void			display_grid(t_context *c)
+{
+	t_list			*lst;
+	t_line			traced_line;
+	size_t			line;
+	size_t			column;
+	t_itab			*itab;
+
+	lst = c->lines;
+	line = 1;
+	while (lst)
+	{
+		itab = lst->content;
+		column = 0;
+		while (column < itab->size)
+		{
+			traced_line = draw_make_line((int)column * 20,
+					(int)line * 20,
+					(int)(column + 1) * 20,
+					(int)(line + 1) * 20);
+			draw_line(c->x, &traced_line, COLOR_RED);
+			column++;
+		}
+		lst = lst->next;
+	}
+	draw_flush_image(c->x, c->x->img);
+}
+
 static void			display(t_context *c)
 {
-	
+	display_grid(c);
 }
 
 static t_mlx		*display_init(void)
@@ -60,10 +88,11 @@ int				main(int ac, char **av)
 		if (fd >= 0)
 		{
 			c.lines = NULL;
-			parser(&lst, fd);
+			parser(&c.lines, fd);
 			close(fd);
 			c.x = display_init();
-			draw_loop(x);
+			display(&c);
+			draw_loop(c.x);
 		}
 		else
 			ft_putendl("error while opening file.");
