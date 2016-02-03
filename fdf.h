@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 17:38:37 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/02 12:27:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/03 12:17:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ typedef struct	s_plist
 	size_t		size;
 }				t_plist;
 
-void			grid(t_mlx *x, t_plist *plist, int color);
+void			grid(t_mlx *x, t_plist **plist, int color);
 int				parser(t_list **lst, int fd);
 int				main(int ac, char **av);
-t_plist			*getpoints(t_list *lst);
+t_plist			**getpoints(t_list *lst);
 
 #endif

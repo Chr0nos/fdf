@@ -6,54 +6,40 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 10:29:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/02 14:17:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/03 18:52:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "fdf.h"
 #include "draw.h"
 #include <stdlib.h>
 
-static size_t	get_points_count(t_list *lst)
+t_plist		**getpoints(t_list *lst)
 {
-	size_t		p;
-
-	p = 0;
-	while (lst)
-	{
-		p += ((t_itab*)(lst->content))->size;
-		lst = lst->next;
-	}
-	return (p);
-}
-
-t_plist		*getpoints(t_list *lst)
-{
-	t_plist		*plist;
+	t_plist		**plist;
 	t_itab		*itab;
-	size_t		line;
-	size_t		col;
-	size_t		idx;
+	size_t		lines;
+	size_t		l;
+	size_t		c;
 
-	if (!(plist = malloc(sizeof(t_plist))))
-		return (NULL);
-	plist->size = get_points_count(lst);
-	if (!(plist->points = malloc(sizeof(t_point) * plist->size)))
-		return (NULL);
-	line = 0;
-	idx = 0;
-	while (lst)
+	lines = ft_lstsize(lst);
+	plist = malloc(sizeof(t_plist*) * (lines + 1));
+	l = 0;
+	while ((lst) && ((itab = lst->content)))
 	{
-		col = 0;
-		itab = lst->content;
-		while (col < itab->size)
+		plist[l] = malloc(sizeof(t_plist));
+		plist[l]->points = malloc(sizeof(t_point) * (itab->size + 1));
+		c = 0;
+		while (c < itab->size)
 		{
-			plist->points[idx++] = draw_make_px(20 + (int)(col * 40),
-					20 + (int)(line * 40));
-			col++;
+			plist[l]->points[c].x = 20 + (int)(c * 40) + itab->values[c];
+			plist[l]->points[c].y = 20 + (int)(l * 40) + itab->values[c];
+			c++;
 		}
-		line++;
+		plist[l++]->size = c;
 		lst = lst->next;
 	}
+	plist[l] = NULL;
 	return (plist);
 }
