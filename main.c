@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/04 14:01:32 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/04 18:04:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,6 @@ static int		key_hook(int keycode, void *userdata)
 static void		display_grid(t_context *c)
 {
 	t_plist		**plist;
-	size_t		line;
-	size_t		col;
-	t_line		l;
-	t_vector	*p1;
 
 	if (!c->lines)
 		return ;
@@ -47,26 +43,7 @@ static void		display_grid(t_context *c)
 	if (!(plist = getpoints(c->lines)))
 		return ;
 	ft_putendl("tracing periemter");
-	line = 0;
-	while (plist[line])
-	{
-		//draw_perimeter(c->x, plist[line]->points, plist[line]->size, COLOR_CYAN);
-		col = 0;
-		while (col < plist[line]->size)
-		{
-			p1 = &plist[line]->points[col];
-			if ((plist[line + 1]) && (col < plist[line + 1]->size))
-			{
-				l = draw_make_line((int)p1->x, (int)p1->y,
-						(int)plist[line + 1]->points[col].x,
-						(int)plist[line + 1]->points[col].y);
-				draw_line(c->x, &l, COLOR_CYAN);
-			}
-			col++;
-		}
-		//draw_pxtab(c->x, plist[line]->points, plist[line]->size, COLOR_RED);
-		line++;
-	}
+	grid_init(c->x, plist);
 	ft_putendl("freeing");
 	draw_flush_image(c->x, c->x->img);
 }
