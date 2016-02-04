@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/03 18:51:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/04 14:01:32 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ static int		key_hook(int keycode, void *userdata)
 	return (0);
 }
 
-static void			display_grid(t_context *c)
+static void		display_grid(t_context *c)
 {
 	t_plist		**plist;
 	size_t		line;
 	size_t		col;
 	t_line		l;
-	t_point		*p1;
+	t_vector	*p1;
 
 	if (!c->lines)
 		return ;
@@ -47,36 +47,36 @@ static void			display_grid(t_context *c)
 	if (!(plist = getpoints(c->lines)))
 		return ;
 	ft_putendl("tracing periemter");
-	grid(c->x, plist, COLOR_PURPLE);
 	line = 0;
 	while (plist[line])
 	{
-		draw_perimeter(c->x, plist[line]->points, plist[line]->size, COLOR_CYAN);
+		//draw_perimeter(c->x, plist[line]->points, plist[line]->size, COLOR_CYAN);
 		col = 0;
 		while (col < plist[line]->size)
 		{
 			p1 = &plist[line]->points[col];
 			if ((plist[line + 1]) && (col < plist[line + 1]->size))
 			{
-				l = draw_make_line(p1->x, p1->y,
-						plist[line + 1]->points[col].x, plist[line + 1]->points[col].y);
+				l = draw_make_line((int)p1->x, (int)p1->y,
+						(int)plist[line + 1]->points[col].x,
+						(int)plist[line + 1]->points[col].y);
 				draw_line(c->x, &l, COLOR_CYAN);
 			}
 			col++;
 		}
-		draw_pxtab(c->x, plist[line]->points, plist[line]->size, COLOR_RED);
+		//draw_pxtab(c->x, plist[line]->points, plist[line]->size, COLOR_RED);
 		line++;
 	}
 	ft_putendl("freeing");
 	draw_flush_image(c->x, c->x->img);
 }
 
-static void			display(t_context *c)
+static void		display(t_context *c)
 {
 	display_grid(c);
 }
 
-static t_mlx		*display_init(void)
+static t_mlx	*display_init(void)
 {
 	t_mlx	*x;
 

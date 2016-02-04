@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 15:54:37 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/01 16:37:56 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/03 19:37:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static size_t		tabsize(char **tab)
+static size_t	tabsize(char **tab)
 {
 	size_t		p;
 
