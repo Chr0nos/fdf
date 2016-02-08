@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/08 17:22:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/08 18:11:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ t_matrix		draw_make_matrix_z(t_vector pos, float rad, t_vector scale);
 t_matrix		draw_make_matrix_iso(int x, int y, int w, int h);
 t_matrix		draw_matrix_multiply_matrix(t_matrix m1, const t_matrix *m2);
 t_vector		draw_make_vector(float x, float y, float z);
+t_vector		draw_vector_transform(t_vector v, const t_matrix *m);
 t_line			draw_make_line(int x1, int y1, int x2, int y2);
 t_rect			draw_make_rect(int x1, int y1, int x2, int y2);
 t_circle		draw_make_circle(int x1, int y1, int radius);

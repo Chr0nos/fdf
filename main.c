@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/08 17:47:33 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/08 18:07:29 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ static void		display(t_context *c)
 	float		zoom;
 
 	zoom = 0.04f;
-	m = draw_make_matrix_z(draw_make_vector(0.2f, 0.2f, 0.5f), 0.2f,
-			draw_make_vector(zoom, zoom, 1.5f));
+	m = draw_make_matrix_x(draw_make_vector(0.2f, 0.2f, 0.5f), 1.57f,
+			draw_make_vector(zoom, zoom, -1.5f));
 	iso = draw_make_matrix_iso(0, 0, 800, 600);
 	m = draw_matrix_multiply_matrix(m, &iso);
 	ft_lstadd(&c->x->mstack, ft_lstnew(&m, sizeof(t_matrix)));

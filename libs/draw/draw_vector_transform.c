@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_matrix_multiply.c                             :+:      :+:    :+:   */
+/*   draw_vector_transform.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/13 14:21:04 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/08 18:06:14 by snicolet         ###   ########.fr       */
+/*   Created: 2016/02/08 18:08:44 by snicolet          #+#    #+#             */
+/*   Updated: 2016/02/08 18:10:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 
-t_vector	draw_matrix_multiply(t_vector point, const t_matrix *t)
+t_vector	draw_vector_transform(t_vector v, const t_matrix *m)
 {
-	return (draw_make_vector(
-			(t->x.x * point.x) + (t->x.y * point.y) + (t->x.z * point.z),
-			(t->y.x * point.x) + (t->y.y * point.y) + (t->y.z * point.z),
-			(t->z.x * point.x) + (t->z.y * point.y) + (t->z.z * point.z)));
+	v = draw_matrix_multiply(v, m);
+	v.x += m->offset.x;
+	v.y += m->offset.y;
+	v.x += m->offset.z;
+	return (v);
 }

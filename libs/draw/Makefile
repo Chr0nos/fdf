@@ -40,7 +40,8 @@ OBJ=draw_line.o \
 	draw_matrix_multiply_matrix.o \
 	draw_matrix_topxtab.o \
 	draw_pxtab.o \
-	draw_raster_px.o draw_raster_line.o
+	draw_raster_px.o draw_raster_line.o \
+	draw_vector_transform.o
 
 all: $(NAME)
 
