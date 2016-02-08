@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 10:29:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/08 18:03:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/08 18:47:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ t_plist		**getpoints(t_list *lst)
 		c = 0;
 		while (c < itab->size)
 		{
-			plist[l]->points[c].x = (float)c;
-			plist[l]->points[c].y = (float)l;
-			plist[l]->points[c].z = (float)itab->values[c];
+			plist[l]->points[c] = draw_make_vector((float)c, (float)l,
+					(float)itab->values[c]);
 			c++;
 		}
 		plist[l++]->size = c;

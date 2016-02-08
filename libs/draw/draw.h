@@ -6,14 +6,13 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/08 18:11:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/08 18:33:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DRAW_H
 # define DRAW_H
 # include <string.h>
-# include "libft.h"
 
 enum			e_color
 {
@@ -109,7 +108,7 @@ typedef struct	s_mlx
 	void		*winptr;
 	int			width;
 	int			height;
-	t_list		*mstack;
+	t_matrix	gtransform;
 }				t_mlx;
 
 t_matrix		draw_make_matrix_x(t_vector pos, float rad, t_vector scale);

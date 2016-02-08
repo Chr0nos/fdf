@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 13:57:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/08 17:06:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/08 18:47:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@ static void	grid_intern(t_mlx *x, t_vector *p1, t_vector *p2)
 {
 	t_line		l;
 
-	//l = draw_make_line((int)p1->x, (int)p1->y, (int)p2->x, (int)p2->y);
-	l = draw_raster_line(*p1, *p2, (t_matrix*)(x->mstack->content));
+	l = draw_raster_line(*p1, *p2, &x->gtransform);
 	draw_line(x, &l, COLOR_CYAN);
 }
 
-void	grid_init(t_mlx *x, t_plist **plist)
+void		grid_init(t_mlx *x, t_plist **plist)
 {
 	size_t		line;
 	size_t		col;
@@ -41,8 +40,7 @@ void	grid_init(t_mlx *x, t_plist **plist)
 				p2 = &plist[line + 1]->points[col];
 				grid_intern(x, p1, p2);
 			}
-			col++;
-			if (col < plist[line]->size)
+			if (++col < plist[line]->size)
 			{
 				p2 = &plist[line]->points[col];
 				grid_intern(x, p1, p2);
