@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/04 18:04:37 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/08 17:47:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,18 @@ static void		display_grid(t_context *c)
 
 static void		display(t_context *c)
 {
+	t_matrix	m;
+	t_matrix	iso;
+	float		zoom;
+
+	zoom = 0.04f;
+	m = draw_make_matrix_z(draw_make_vector(0.2f, 0.2f, 0.5f), 0.2f,
+			draw_make_vector(zoom, zoom, 1.5f));
+	iso = draw_make_matrix_iso(0, 0, 800, 600);
+	m = draw_matrix_multiply_matrix(m, &iso);
+	ft_lstadd(&c->x->mstack, ft_lstnew(&m, sizeof(t_matrix)));
 	display_grid(c);
+	ft_lstdel(&c->x->mstack, &ft_lstpulverisator);
 }
 
 static t_mlx	*display_init(void)

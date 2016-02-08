@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 13:57:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/04 18:43:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/08 17:06:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static void	grid_intern(t_mlx *x, t_vector *p1, t_vector *p2)
 {
 	t_line		l;
 
-	l = draw_make_line((int)p1->x, (int)p1->y, (int)p2->x, (int)p2->y);
+	//l = draw_make_line((int)p1->x, (int)p1->y, (int)p2->x, (int)p2->y);
+	l = draw_raster_line(*p1, *p2, (t_matrix*)(x->mstack->content));
 	draw_line(x, &l, COLOR_CYAN);
 }
 

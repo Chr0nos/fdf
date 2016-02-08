@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 15:10:35 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/29 16:23:28 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/08 17:12:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_mlx	*draw_init(char *name, int width, int height)
 		free(x);
 		return (NULL);
 	}
+	x->mstack = NULL;
 	x->height = height;
 	x->width = width;
 	draw_new_image(x);
