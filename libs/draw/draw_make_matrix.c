@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 14:02:31 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/08 15:43:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/08 16:03:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,39 @@
 
 t_matrix	draw_make_matrix_x(t_vector pos, float rad, t_vector scale)
 {
-	t_matrix	m;
+	t_matrix		m;
+	const float 	s = sinf(rad);
+	const float		c = cosf(rad);
 
-	m.x = draw_make_vector(1.0f, 1.0f, 1.0f);
-	m.y = draw_make_vector(1.0f, cosf(rad) * scale.y, -sinf(rad) * scale.y);
-	m.z = draw_make_vector(1.0f, -sinf(rad) * scale.z, cosf(rad) * scale.z);
+	m.x = draw_make_vector(scale.x, scale.y, scale.z);
+	m.y = draw_make_vector(scale.x, c * scale.y, -s * scale.z);
+	m.z = draw_make_vector(scale.x, -s * scale.y, c * scale.z);
 	m.offset = pos;
 	return (m);
 }
 
 t_matrix	draw_make_matrix_y(t_vector pos, float rad, t_vector scale)
 {
-	t_matrix	m;
+	t_matrix		m;
+	const float 	s = sinf(rad);
+	const float		c = cosf(rad);
 
-	m.x = draw_make_vector(cosf(rad) * scale.x, 1.0f, -sinf(rad) * scale.x);
-	m.y = draw_make_vector(1.0f, 1.0f, 1.0f);
-	m.z = draw_make_vector(-sinf(rad) * scale.z, 1.0f, cosf(rad) * scale.z);
+	m.x = draw_make_vector(c * scale.x, scale.y, -s * scale.z);
+	m.y = draw_make_vector(scale.x, scale.y, scale.z);
+	m.z = draw_make_vector(-s * scale.x, scale.y, c * scale.z);
 	m.offset = pos;
 	return (m);
 }
 
 t_matrix	draw_make_matrix_z(t_vector pos, float rad, t_vector scale)
 {
-	t_matrix	m;
+	t_matrix		m;
+	const float 	s = sinf(rad);
+	const float		c = cosf(rad);
 
-	m.x = draw_make_vector(cosf(rad) * scale.x, -sinf(rad) * scale.x, 1.0f);
-	m.y = draw_make_vector(sinf(rad) * scale.y, cosf(rad) * scale.y, 1.0f);
-	m.z = draw_make_vector(1.0f, 1.0f, 1.0f);
+	m.x = draw_make_vector(c * scale.x, -s * scale.y, scale.z);
+	m.y = draw_make_vector(s * scale.x, c * scale.y, scale.z);
+	m.z = draw_make_vector(scale.x, scale.y, scale.z);
 	m.offset = pos;
 	return (m);
 }

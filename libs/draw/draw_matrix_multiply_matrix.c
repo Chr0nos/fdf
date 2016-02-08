@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_matrix_multiply.c                             :+:      :+:    :+:   */
+/*   draw_matrix_multiply_matrix.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/13 14:21:04 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/08 16:53:41 by snicolet         ###   ########.fr       */
+/*   Created: 2016/02/08 16:33:40 by snicolet          #+#    #+#             */
+/*   Updated: 2016/02/08 16:54:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 
-t_vector	draw_matrix_multiply(t_vector point, const t_matrix *t)
+t_matrix	draw_matrix_multiply_matrix(t_matrix m1, const t_matrix *m2)
 {
-	return (draw_make_vector(
-			(t->x.x * point.x) + (t->x.y * point.y) + (t->x.z * point.z) +
-			t->offset.x,
-			(t->y.x * point.x) + (t->y.y * point.y) + (t->y.z * point.z) +
-			t->offset.y,
-			(t->z.x * point.x) + (t->z.y * point.y) + (t->z.z * point.z) +
-			t->offset.z));
+	m1.x = draw_matrix_multiply(m1.x, m2);
+	m1.y = draw_matrix_multiply(m1.y, m2);
+	m1.z = draw_matrix_multiply(m1.z, m2);
+	m1.offset = draw_matrix_multiply(m1.offset, m2);
+	return (m1);
 }

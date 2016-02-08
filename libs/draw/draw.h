@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/08 15:30:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/08 16:54:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ typedef struct	s_mlx
 t_matrix		draw_make_matrix_x(t_vector pos, float rad, t_vector scale);
 t_matrix		draw_make_matrix_y(t_vector pos, float rad, t_vector scale);
 t_matrix		draw_make_matrix_z(t_vector pos, float rad, t_vector scale);
+t_matrix		draw_make_matrix_iso(int x, int y, int w, int h);
+t_matrix		draw_matrix_multiply_matrix(t_matrix m1, const t_matrix *m2);
 t_vector		draw_make_vector(float x, float y, float z);
 t_line			draw_make_line(int x1, int y1, int x2, int y2);
 t_rect			draw_make_rect(int x1, int y1, int x2, int y2);
@@ -143,7 +145,7 @@ void			draw_sethook(t_mlx *x, int (*f)(int, void*), void *userdata);
 t_point			*draw_move_pxlist(t_point *tab, size_t size, int x, int y);
 t_point			*draw_matrix_topxtab(t_point *tab, size_t size, t_matrix *t);
 t_point			draw_raster_px(t_vector v, t_matrix *transform);
-t_vector		draw_matrix_multiply(t_vector point, t_matrix *t);
+t_vector		draw_matrix_multiply(t_vector point, const t_matrix *t);
 t_line			draw_raster_line(t_vector v1, t_vector v2, t_matrix *transform);
 
 #endif

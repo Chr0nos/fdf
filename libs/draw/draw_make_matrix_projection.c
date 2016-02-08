@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_matrix_multiply.c                             :+:      :+:    :+:   */
+/*   draw_make_matrix_projection.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/13 14:21:04 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/08 16:53:41 by snicolet         ###   ########.fr       */
+/*   Created: 2016/02/08 16:04:58 by snicolet          #+#    #+#             */
+/*   Updated: 2016/02/08 16:33:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 
-t_vector	draw_matrix_multiply(t_vector point, const t_matrix *t)
+t_matrix	draw_make_matrix_iso(int x, int y, int w, int h)
 {
-	return (draw_make_vector(
-			(t->x.x * point.x) + (t->x.y * point.y) + (t->x.z * point.z) +
-			t->offset.x,
-			(t->y.x * point.x) + (t->y.y * point.y) + (t->y.z * point.z) +
-			t->offset.y,
-			(t->z.x * point.x) + (t->z.y * point.y) + (t->z.z * point.z) +
-			t->offset.z));
+	t_matrix		m;
+
+	m.x = draw_make_vector((float)w, 0.0f, 0.0f);
+	m.y = draw_make_vector(0.0f, (float)h, 0.0f);
+	m.z = draw_make_vector(0.0f, 0.0f, 1.0f);
+	m.offset = draw_make_vector(x, y, 0.0f);
+	return (m);
 }
