@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 17:38:37 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/04 18:05:10 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/08 20:42:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ int				parser(t_list **lst, int fd);
 int				main(int ac, char **av);
 t_plist			**getpoints(t_list *lst);
 void			grid_init(t_mlx *x, t_plist **plist);
+void			display(t_context *c, const float rx, const float rz,
+		const float zoom);
 
 #endif
