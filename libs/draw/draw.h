@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/02 11:12:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/08 15:30:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,8 @@ t_mlx			*draw_init(char *name, int width, int height);
 void			draw_sethook(t_mlx *x, int (*f)(int, void*), void *userdata);
 t_point			*draw_move_pxlist(t_point *tab, size_t size, int x, int y);
 t_point			*draw_matrix_topxtab(t_point *tab, size_t size, t_matrix *t);
+t_point			draw_raster_px(t_vector v, t_matrix *transform);
 t_vector		draw_matrix_multiply(t_vector point, t_matrix *t);
+t_line			draw_raster_line(t_vector v1, t_vector v2, t_matrix *transform);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 14:02:31 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/23 14:59:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/08 15:43:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_matrix	draw_make_matrix_z(t_vector pos, float rad, t_vector scale)
 
 	m.x = draw_make_vector(cosf(rad) * scale.x, -sinf(rad) * scale.x, 1.0f);
 	m.y = draw_make_vector(sinf(rad) * scale.y, cosf(rad) * scale.y, 1.0f);
-	m.z = draw_make_vector(1.0f ,1.0f, 1.0f);
+	m.z = draw_make_vector(1.0f, 1.0f, 1.0f);
 	m.offset = pos;
 	return (m);
 }

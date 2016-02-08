@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_make_line.c                                   :+:      :+:    :+:   */
+/*   draw_raster_px.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/30 19:00:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/08 15:42:57 by snicolet         ###   ########.fr       */
+/*   Created: 2016/02/08 15:15:17 by snicolet          #+#    #+#             */
+/*   Updated: 2016/02/08 15:25:32 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
-#include "libft.h"
 
-t_line	draw_make_line(int x1, int y1, int x2, int y2)
+/*
+** this function convert a 3d vector into a 2d point using Z
+*/
+
+t_point		draw_raster_px(t_vector v, t_matrix *transform)
 {
-	t_line	line;
+	t_point		p;
 
-	line.dx = ft_abs(x2 - x1);
-	line.dy = ft_abs(y2 - y1);
-	line.start.x = x1;
-	line.start.y = y1;
-	line.end.x = x2;
-	line.end.y = y2;
-	return (line);
+	v = draw_matrix_multiply(v, transform);
+	p.x = (int)v.x;
+	p.y = (int)v.y;
+	return (p);
 }
