@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 12:28:53 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/08 15:43:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/09 12:53:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ inline static void	draw_line_bresemham(t_mlx *x, t_line line, int color,
 	}
 }
 
-void					draw_line(t_mlx *x, t_line *line, int color)
+void				draw_line(t_mlx *x, t_line *line, int color)
 {
 	t_point		variance;
 
