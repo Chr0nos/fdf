@@ -15,7 +15,7 @@
 
 #include "libft.h"
 
-static void	grid_intern(t_mlx *x, t_vector *p1, t_vector *p2)
+inline static void	grid_intern(t_mlx *x, t_vector *p1, t_vector *p2)
 {
 	t_line		l;
 
@@ -25,11 +25,11 @@ static void	grid_intern(t_mlx *x, t_vector *p1, t_vector *p2)
 	if ((l.end.x > x->width) || (l.end.x < 0) | (l.end.y > x->height) ||
 			(l.end.y <= 0))
 		return ;
-	ft_printf("sx: %d sy: %d ex: %d ey: %d\n", l.start.x, l.start.x, l.end.x, l.end.y);
+	//ft_printf("sx: %d sy: %d ex: %d ey: %d\n", l.start.x, l.start.x, l.end.x, l.end.y);
 	draw_line(x, &l, COLOR_CYAN);
 }
 
-void		grid_init(t_mlx *x, t_plist **plist)
+void				grid_init(t_mlx *x, t_plist **plist)
 {
 	size_t		line;
 	size_t		col;

@@ -18,13 +18,13 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-static int		key_hook(int keycode, void *userdata)
+static int			key_hook(int keycode, void *userdata)
 {
 	t_context		*c;
 	static t_scales	scales = { 0.04f, 0.8f, -0.2f, -4.0f };
 
 	c = userdata;
-	if ((keycode == 53) || (keycode == 65307))
+	if ((keycode == 53) || (keycode == 65307) || (keycode == 12))
 		exit(0);
 	else if ((keycode == 126) || (keycode == 125))
 		scales.rx += (keycode == 126) ? 0.1f : -0.1f;
@@ -43,7 +43,7 @@ static int		key_hook(int keycode, void *userdata)
 	return (0);
 }
 
-static void		display_grid(t_context *c)
+inline static void	display_grid(t_context *c)
 {
 	t_plist		**plist;
 
@@ -55,7 +55,7 @@ static void		display_grid(t_context *c)
 	draw_flush_image(c->x, c->x->img);
 }
 
-void			display(t_context *c, const t_scales *scales)
+void				display(t_context *c, const t_scales *scales)
 {
 	t_matrix	m1;
 	t_matrix	m2;
@@ -72,14 +72,14 @@ void			display(t_context *c, const t_scales *scales)
 	display_grid(c);
 }
 
-static void		display_init(t_context *c)
+static void			display_init(t_context *c)
 {
 	c->x = draw_init("fdf", 1024, 768);
 	draw_flush_image(c->x, c->x->img);
 	draw_sethook(c->x, &key_hook, c);
 }
 
-int				main(int ac, char **av)
+int					main(int ac, char **av)
 {
 	int				fd;
 	t_context		c;
