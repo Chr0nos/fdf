@@ -14,7 +14,8 @@
 #include "mlx.h"
 #include "libft.h"
 
-static void	draw_flat_line(t_mlx *x, t_line line, int color, int variance)
+inline static void	draw_flat_line(t_mlx *x, t_line line, int color,
+		int variance)
 {
 	while (line.start.x != line.end.x)
 	{
@@ -23,7 +24,8 @@ static void	draw_flat_line(t_mlx *x, t_line line, int color, int variance)
 	}
 }
 
-static void	draw_vertical_line(t_mlx *x, t_line line, int color, int variance)
+inline static void	draw_vertical_line(t_mlx *x, t_line line, int color,
+		int variance)
 {
 	while (line.start.y != line.end.y)
 	{
@@ -32,7 +34,7 @@ static void	draw_vertical_line(t_mlx *x, t_line line, int color, int variance)
 	}
 }
 
-static void	draw_line_bresemham(t_mlx *x, t_line line, int color,
+inline static void	draw_line_bresemham(t_mlx *x, t_line line, int color,
 		t_point *variance)
 {
 	int		err;
@@ -56,7 +58,7 @@ static void	draw_line_bresemham(t_mlx *x, t_line line, int color,
 	}
 }
 
-void		draw_line(t_mlx *x, t_line *line, int color)
+void					draw_line(t_mlx *x, t_line *line, int color)
 {
 	t_point		variance;
 
