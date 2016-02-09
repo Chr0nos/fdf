@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 15:54:37 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/03 19:37:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/09 18:56:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static size_t	tabsize(char **tab)
+static size_t		tabsize(char **tab)
 {
 	size_t		p;
 
@@ -24,7 +24,7 @@ static size_t	tabsize(char **tab)
 	return (p);
 }
 
-static void		init_itab(t_itab **itab, char **tab)
+inline static void	init_itab(t_itab **itab, char **tab)
 {
 	size_t		size;
 
@@ -34,29 +34,40 @@ static void		init_itab(t_itab **itab, char **tab)
 	(*itab)->size = size;
 }
 
-int				parser(t_list **lst, int fd)
+inline static void	clean(void *split, void *line)
+{
+	free(split);
+	free(line);
+}
+
+inline static void	append(t_itab *itab, int p, char **split)
+{
+	itab->values[p] = ft_atoi(split[p]);
+	free(split[p]);
+}
+
+int					parser(t_list **lst, int fd)
 {
 	char		*line;
 	char		**split;
 	int			p;
+	int			maxp;
 	t_itab		*itab;
 
+	maxp = 0;
 	while (ft_get_next_line(fd, &line))
 	{
-		ft_printf("line: %s\n", line);
+		ft_putendl(line);
 		if (!(split = ft_strsplit(line, ' ')))
 			return (-1);
 		init_itab(&itab, split);
 		p = 0;
 		while (split[p])
-		{
-			itab->values[p] = ft_atoi(split[p]);
-			free(split[p]);
-			p++;
-		}
-		free(split);
-		free(line);
+			append(itab, p++, split);
+		if (p > maxp)
+			p = maxp;
+		clean(split, line);
 		ft_lstpush_back(lst, ft_lstnewlink(itab, 0));
 	}
-	return (0);
+	return (maxp);
 }
