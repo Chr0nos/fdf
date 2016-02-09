@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 18:10:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/23 15:00:23 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/09 19:23:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,6 @@
 #include "draw.h"
 #include "libft.h"
 #include <unistd.h>
-
-/*
-static void	display_mist(t_mlx *x)
-{
-	t_rect	r;
-
-	r = draw_make_rect(400, 300, 600, 400);
-	draw_rect_fill(x, &r, 0x001010);
-	draw_rect_mist(x, &r, 42, COLOR_GREEN);
-	draw_rect_mist(x, &r, 1, COLOR_WHITE);
-	draw_rect(x, &r, COLOR_RED);
-	r = draw_make_rect(800, 300, 900, 400);
-	draw_rect_invert(x, &r);
-}
-
-static void	display_circle(t_mlx *x)
-{
-	t_circle		c;
-
-	c = draw_make_circle(512, 384, 310);
-	draw_circle(x, &c, COLOR_PURPLE);
-	display_mist(x);
-}
-*/
 
 static int	display(t_mlx *x)
 {
@@ -62,7 +38,6 @@ static int	display(t_mlx *x)
 	draw_matrix_topxtab(tab, 4, &m);
 	draw_perimeter(x, tab, 4, COLOR_GREEN);
 	time += sens;
-	//display_circle(x);
 	draw_flush_image(x, x->img);
 	usleep(6000);
 	return (0);

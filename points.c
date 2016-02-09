@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 10:29:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/08 18:47:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/09 19:52:03 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 #include "fdf.h"
 #include "draw.h"
 #include <stdlib.h>
+
+void		clean_points(t_plist **plist)
+{
+	size_t	p;
+
+	p = 0;
+	while (plist[p])
+		free(plist[p++]->points);
+	free(plist);
+}
 
 t_plist		**getpoints(t_list *lst)
 {

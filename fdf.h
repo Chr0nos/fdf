@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 17:38:37 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/08 21:01:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/09 19:47:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,14 @@ typedef struct	s_scales
 	float		rx;
 	float		rz;
 	float		zoom_z;
+	t_vector	offsets;
 }				t_scales;
 
+int				key_hook(int keycode, void *userdata);
 int				parser(t_list **lst, int fd);
 int				main(int ac, char **av);
 t_plist			**getpoints(t_list *lst);
+void			clean_points(t_plist **plist);
 void			grid_init(t_mlx *x, t_plist **plist);
 void			display(t_context *c, const t_scales *scales);
 
