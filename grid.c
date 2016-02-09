@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 13:57:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/09 16:01:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/09 18:17:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ inline static void	grid_intern(t_mlx *x, t_vector *p1, t_vector *p2)
 	if ((l.end.x > x->width) || (l.end.x < 0) | (l.end.y > x->height) ||
 			(l.end.y <= 0))
 		return ;
-	draw_line(x, &l, COLOR_CYAN);
+	if ((p1->z > 0.0f) || (p2->z > 0.0f))
+		draw_line(x, &l, COLOR_CYAN);
+	else
+		draw_line(x, &l, COLOR_GREEN);
 }
 
 void				grid_init(t_mlx *x, t_plist **plist)
