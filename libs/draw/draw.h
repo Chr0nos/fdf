@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/08 18:33:09 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/09 17:52:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ t_matrix		draw_make_matrix_x(t_vector pos, float rad, t_vector scale);
 t_matrix		draw_make_matrix_y(t_vector pos, float rad, t_vector scale);
 t_matrix		draw_make_matrix_z(t_vector pos, float rad, t_vector scale);
 t_matrix		draw_make_matrix_iso(int x, int y, int w, int h);
+t_matrix		draw_make_matrix_ortho(t_vector s, t_vector c);
 t_matrix		draw_matrix_multiply_matrix(t_matrix m1, const t_matrix *m2);
 t_vector		draw_make_vector(float x, float y, float z);
 t_vector		draw_vector_transform(t_vector v, const t_matrix *m);
