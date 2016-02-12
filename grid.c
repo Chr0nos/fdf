@@ -17,6 +17,7 @@
 inline static void	grid_intern(t_mlx *x, t_vector *p1, t_vector *p2)
 {
 	t_line		l;
+	int			z;
 
 	l = draw_raster_line(*p1, *p2, &x->gtransform);
 	if ((l.start.x > x->width) || (l.start.y > x->height) ||
@@ -25,10 +26,13 @@ inline static void	grid_intern(t_mlx *x, t_vector *p1, t_vector *p2)
 	if ((l.end.x > x->width) || (l.end.x < 0) | (l.end.y > x->height) ||
 			(l.end.y <= 0))
 		return ;
-	if ((p1->z > 0.0f) || (p2->z > 0.0f))
-		draw_line(x, &l, COLOR_CYAN);
-	else
+	z = (int)((p1->z < p2->z) ? p2->z : p1->z);
+	if (z > 36)
+		draw_line(x, &l, COLOR_WHITE);
+	else if (z > 0)
 		draw_line(x, &l, COLOR_GREEN);
+	else
+		draw_line(x, &l, 0x000000b0);
 }
 
 void				grid_init(t_mlx *x, t_plist **plist)

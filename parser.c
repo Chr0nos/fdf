@@ -57,7 +57,7 @@ int					parser(t_list **lst, int fd)
 	maxp = 0;
 	while (ft_get_next_line(fd, &line))
 	{
-		ft_putendl(line);
+		//ft_putendl(line);
 		if (!(split = ft_strsplit(line, ' ')))
 			return (-1);
 		init_itab(&itab, split);
