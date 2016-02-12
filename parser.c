@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 15:54:37 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/09 18:56:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/12 13:03:13 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ inline static void	init_itab(t_itab **itab, char **tab)
 	size_t		size;
 
 	size = tabsize(tab);
-	*itab = malloc(sizeof(t_itab));
+	if (!(*itab = malloc(sizeof(t_itab))))
+		return ;
 	(*itab)->values = malloc(sizeof(int) * size);
 	(*itab)->size = size;
 }
@@ -57,7 +58,6 @@ int					parser(t_list **lst, int fd)
 	maxp = 0;
 	while (ft_get_next_line(fd, &line))
 	{
-		//ft_putendl(line);
 		if (!(split = ft_strsplit(line, ' ')))
 			return (-1);
 		init_itab(&itab, split);
