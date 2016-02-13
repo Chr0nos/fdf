@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 13:57:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/13 18:31:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/13 18:58:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 inline static int	valid_px(t_mlx *x, t_point *p)
 {
-	if ((p->x >= 0) && (p->x < x->width) && (p->y > 0) && (p->y <= x->height))
+	if ((p->x >= 0) && (p->x < x->width) && (p->y >= 0) && (p->y < x->height))
 		return (1);
 	return (0);
 }
@@ -29,8 +29,8 @@ inline static void	fix_px(t_mlx *x, t_point *p)
 		p->x = x->width - 1;
 	if (p->y < 0)
 		p->y = 0;
-	else if (p->y > x->height)
-		p->y = x->height;
+	else if (p->y >= x->height)
+		p->y = x->height - 1;
 }
 
 inline static int	fix_line(t_mlx *x, t_line *l)
@@ -44,6 +44,8 @@ inline static int	fix_line(t_mlx *x, t_line *l)
 	{
 		fix_px(x, &l->start);
 		fix_px(x, &l->end);
+		l->dx = ft_abs(l->end.x - l->start.x);
+		l->dy = ft_abs(l->end.y - l->start.y);
 		return (1);
 	}
 	return (0);
