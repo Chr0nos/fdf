@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/13 14:01:56 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/13 14:34:03 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ void			draw_pxtab(t_mlx *x, t_point *tab, size_t size, int color);
 int				draw_get_px(t_mlx *x, const t_point *point);
 t_mlx			*draw_init(char *name, int width, int height);
 void			draw_sethook(t_mlx *x, int (*f)(int, void*), void *userdata);
-void			draw_sethook_ng(t_mlx *x, int (*f)(int, void*), void *userdata,
+void			draw_sethook_ng(t_mlx *x, int (*f)(), void *userdata,
 		const enum e_hook hook);
 t_point			*draw_move_pxlist(t_point *tab, size_t size, int x, int y);
 t_point			*draw_matrix_topxtab(t_point *tab, size_t size, t_matrix *t);

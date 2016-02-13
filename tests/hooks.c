@@ -6,13 +6,14 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 13:43:31 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/13 14:08:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/13 14:28:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 #include "libft.h"
 #include <unistd.h>
+#include <stdlib.h>
 
 typedef struct 	s_x
 {
@@ -25,7 +26,7 @@ static int		display(void *userdata)
 	t_x		*c;
 
 	c = userdata;
-	draw_reset_image(c->x, 0x00000000);
+	//draw_reset_image(c->x, 0x00000000);
 	draw_px(c->x, &c->p, COLOR_GREEN);
 	draw_flush_image(c->x, c->x->img);
 	return (0);
@@ -33,17 +34,20 @@ static int		display(void *userdata)
 
 int				key(int keycode, void *userdata)
 {
-	t_x		*c;
+	const int	offset = 2;
+	t_x			*c;
 
 	c = userdata;
-	if (keycode == 124)
-		c->p.x++;
-	else if ((keycode == 123) && (c->p.x > 0))
-		c->p.x--;
-	else if ((keycode == 125) && (c->p.y < c->x->height))
-		c->p.y++;
-	else if ((keycode == 126) && (c->p.y > 0))
-		c->p.y--;
+	if ((keycode == 124) && (c->p.x + offset < c->x->width))
+		c->p.x += offset;
+	else if ((keycode == 123) && (c->p.x - offset >= 0))
+		c->p.x -= offset;
+	else if ((keycode == 125) && (c->p.y + offset < c->x->height))
+		c->p.y += offset;
+	else if ((keycode == 126) && (c->p.y - offset >= 0))
+		c->p.y -= offset;
+	else if (keycode == 12)
+		exit(0);
 	display(c);
 	ft_printf("keycode: %d -- ptr: %p\n", keycode, userdata);
 	return (0);
