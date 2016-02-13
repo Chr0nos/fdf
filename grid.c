@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 13:57:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/09 19:20:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/13 16:12:49 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ inline static void	grid_intern(t_mlx *x, t_vector *p1, t_vector *p2)
 	int			z;
 
 	l = draw_raster_line(*p1, *p2, &x->gtransform);
-	if ((l.start.x > x->width) || (l.start.y > x->height) ||
+	if ((l.start.x >= x->width) || (l.start.y > x->height) ||
 			(l.start.x < 0) || (l.start.y < 0))
 		return ;
-	if ((l.end.x > x->width) || (l.end.x < 0) | (l.end.y > x->height) ||
+	if ((l.end.x >= x->width) || (l.end.x < 0) | (l.end.y > x->height) ||
 			(l.end.y <= 0))
 		return ;
 	z = (int)((p1->z < p2->z) ? p2->z : p1->z);
