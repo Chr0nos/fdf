@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/09 20:14:01 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/13 14:30:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void			display_init(t_context *c)
 {
 	c->x = draw_init("fdf", XSIZE, YSIZE);
 	draw_flush_image(c->x, c->x->img);
-	draw_sethook(c->x, &key_hook, c);
+	draw_sethook_ng(c->x, &key_hook, c, KEYDOWN);
 }
 
 int					main(int ac, char **av)
