@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/13 15:40:06 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/13 16:30:28 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,21 @@ void				display(t_context *c, const t_scales *scales)
 	display_grid(c);
 }
 
+static int			close_fdf(void *userdata)
+{
+	t_context	*c;
+
+	c = userdata;
+	draw_clear(c->x);
+	exit(0);
+}
+
 static void			display_init(t_context *c)
 {
 	c->x = draw_init("fdf", XSIZE, YSIZE);
 	draw_flush_image(c->x, c->x->img);
 	draw_sethook_ng(c->x, &key_hook, c, KEYDOWN);
+	draw_sethook_ng(c->x, &close_fdf, c, CLOSE);
 }
 
 int					main(int ac, char **av)
