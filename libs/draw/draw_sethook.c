@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 16:58:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/12 19:27:37 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/13 14:01:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,16 @@ void	draw_sethook(t_mlx *x, int (*f)(int, void*), void *userdata)
 	mlx_key_hook(x->winptr, f, userdata);
 }
 
-void	draw_sethook_keydown(t_mlx *x, int (*f)(void*), void *userdata)
-{
-	mlx_hook(x->winptr, 2, -1, f, userdata);
-}
+/*
+** this function allow better implementations for keys hooks with mlx
+** parameters:
+** 2 : KEYDOWN / 3 : KEYRLZ
+** -1 : useless : not used by mlx
+** f : function pointer to call at each call
+*/
 
-void	draw_sethook_keyrlz(t_mlx *x, int (*f)(void*), void *userdata)
+void	draw_sethook_ng(t_mlx *x, int (*f)(int, void*), void *userdata,
+		const enum e_hook hook)
 {
-	mlx_hook(x->winptr, 3, -1, f, userdata);
+	mlx_hook(x->winptr, hook, -1, f, userdata);
 }
