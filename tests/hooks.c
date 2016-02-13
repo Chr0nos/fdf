@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 13:43:31 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/13 14:28:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/13 15:33:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static int		display(void *userdata)
 	t_x		*c;
 
 	c = userdata;
-	//draw_reset_image(c->x, 0x00000000);
 	draw_px(c->x, &c->p, COLOR_GREEN);
 	draw_flush_image(c->x, c->x->img);
 	return (0);
@@ -53,6 +52,20 @@ int				key(int keycode, void *userdata)
 	return (0);
 }
 
+int				mouse(int x, int y, void *userdata)
+{
+	t_x		*c;
+
+	ft_printf("x: %d %y %d -- ptr: %p\n", x, y, userdata);
+	c = userdata;
+	if ((x > c->x->width) || (y > c->x->height) || (x < 0) || (y < 0))
+		return (0);
+	c->p.x = x;
+	c->p.y = y;
+	display(c);
+	return (0);
+}
+
 int				main(void)
 {
 	t_x		c;
@@ -62,6 +75,7 @@ int				main(void)
 	c.p.y = 300;
 	display(&c);
 	draw_sethook_ng(c.x, &key, &c, KEYDOWN);
+	draw_sethook_ng(c.x, &mouse, &c, MOUSEMOVE);
 	draw_loop(c.x);
 	return (0);
 }
