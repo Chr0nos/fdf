@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/13 16:30:28 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/13 19:06:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int					main(int ac, char **av)
 	t_context		c;
 	const t_scales	scale = { 0.04f, 0.8f, -0.2f, -4.0f, { 0.08f, 0.0f, 0.1f} };
 
-	if (ac > 1)
+	if (ac == 2)
 	{
 		fd = open(av[1], O_RDONLY);
 		if (fd >= 0)
@@ -91,5 +91,7 @@ int					main(int ac, char **av)
 		else
 			ft_putendl("error while opening file.");
 	}
+	else
+		ft_putendl("error: invalid number of argumnts");
 	return (0);
 }
