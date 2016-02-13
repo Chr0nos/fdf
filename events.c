@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 19:32:13 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/09 20:11:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/13 15:19:29 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ int					key_hook(int keycode, void *userdata)
 		scale.zoom_z += (keycode == 37) ? 0.3f : -0.3f;
 	else if (keycode == 34)
 		scale.zoom_z = 0.0f;
-	else
-		ft_printf("keycode: %d\n", keycode);
 	more_keys(keycode, c, &scale);
 	display(c, &scale);
 	return (0);
