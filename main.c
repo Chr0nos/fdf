@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 16:27:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/13 14:30:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/13 15:40:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int					main(int ac, char **av)
 			display_init(&c);
 			display(&c, &scale);
 			draw_loop(c.x);
+			draw_clear(c.x);
 		}
 		else
 			ft_putendl("error while opening file.");

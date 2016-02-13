@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 13:43:31 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/13 15:33:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/13 15:39:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ int				main(void)
 	draw_sethook_ng(c.x, &key, &c, KEYDOWN);
 	draw_sethook_ng(c.x, &mouse, &c, MOUSEMOVE);
 	draw_loop(c.x);
+	draw_clear(c.x);
 	return (0);
 }
