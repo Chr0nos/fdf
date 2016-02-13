@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 13:57:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/13 17:17:22 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/13 18:31:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 inline static int	valid_px(t_mlx *x, t_point *p)
 {
-	if ((p->x >= 0) && (p->x <= x->width) && (p->y > 0) && (p->y <= x->height))
+	if ((p->x >= 0) && (p->x < x->width) && (p->y > 0) && (p->y <= x->height))
 		return (1);
 	return (0);
 }
@@ -40,13 +40,9 @@ inline static int	fix_line(t_mlx *x, t_line *l)
 
 	if ((valid_start) && (valid_end))
 		return (1);
-	if ((!valid_start) && (valid_end))
+	if (((!valid_start) && (valid_end)) || ((valid_start) && (!valid_end)))
 	{
 		fix_px(x, &l->start);
-		return (1);
-	}
-	if (valid_start)
-	{
 		fix_px(x, &l->end);
 		return (1);
 	}
@@ -59,14 +55,7 @@ inline static void	grid_intern(t_mlx *x, t_vector *p1, t_vector *p2)
 	int			z;
 
 	l = draw_raster_line(*p1, *p2, &x->gtransform);
-	(void)fix_line;
-	//if (!fix_line(x, &l))
-	//	return ;
-	if ((l.start.x >= x->width) || (l.start.y > x->height) ||
-			(l.start.x < 0) || (l.start.y < 0))
-		return ;
-	if ((l.end.x >= x->width) || (l.end.x < 0) | (l.end.y > x->height) ||
-			(l.end.y <= 0))
+	if (!fix_line(x, &l))
 		return ;
 	z = (int)((p1->z < p2->z) ? p2->z : p1->z);
 	if (z > 36)
