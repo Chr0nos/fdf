@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 13:43:31 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/13 15:39:35 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/13 16:25:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-typedef struct 	s_x
+typedef struct	s_x
 {
 	t_mlx		*x;
 	t_point		p;
@@ -31,12 +31,14 @@ static int		display(void *userdata)
 	return (0);
 }
 
-int				key(int keycode, void *userdata)
+static int		key(int keycode, void *userdata)
 {
 	const int	offset = 2;
 	t_x			*c;
 
 	c = userdata;
+	if (keycode == 15)
+		draw_reset_image(c->x, 0);
 	if ((keycode == 124) && (c->p.x + offset < c->x->width))
 		c->p.x += offset;
 	else if ((keycode == 123) && (c->p.x - offset >= 0))
@@ -52,17 +54,24 @@ int				key(int keycode, void *userdata)
 	return (0);
 }
 
-int				mouse(int x, int y, void *userdata)
+static int		mousemove(int x, int y, void *userdata)
 {
 	t_x		*c;
 
-	ft_printf("x: %d %y %d -- ptr: %p\n", x, y, userdata);
+	ft_printf("move: x: %d %y %d -- ptr: %p\n", x, y, userdata);
 	c = userdata;
 	if ((x > c->x->width) || (y > c->x->height) || (x < 0) || (y < 0))
 		return (0);
 	c->p.x = x;
 	c->p.y = y;
 	display(c);
+	return (0);
+}
+
+static int		mousedown(int x, int y, int button, void *userdata)
+{
+	ft_printf("click: x: %d %y %d button: %d -- ptr: %p\n",
+			x, y, button, userdata);
 	return (0);
 }
 
@@ -75,7 +84,8 @@ int				main(void)
 	c.p.y = 300;
 	display(&c);
 	draw_sethook_ng(c.x, &key, &c, KEYDOWN);
-	draw_sethook_ng(c.x, &mouse, &c, MOUSEMOVE);
+	draw_sethook_ng(c.x, &mousemove, &c, MOUSEMOVE);
+	draw_sethook_ng(c.x, &mousedown, &c, MOUSEDOWN);
 	draw_loop(c.x);
 	draw_clear(c.x);
 	return (0);
