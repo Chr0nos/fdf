@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/13 14:34:03 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/13 15:28:22 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,11 @@ enum			e_hook
 {
 	KEYDOWN = 2,
 	KEYUP = 3,
-	MOUSE = 4,
-	EXPOSE = 12
+	MOUSEDOWN = 4,
+	MOUSEUP = 5,
+	MOUSEMOVE = 6,
+	EXPOSE = 12,
+	CLOSE = 17
 };
 
 typedef struct	s_tab
