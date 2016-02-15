@@ -41,7 +41,8 @@ OBJ=draw_line.o \
 	draw_matrix_topxtab.o \
 	draw_pxtab.o \
 	draw_raster_px.o draw_raster_line.o \
-	draw_vector_transform.o
+	draw_vector_transform.o \
+	draw_colors.o
 
 all: $(NAME)
 
