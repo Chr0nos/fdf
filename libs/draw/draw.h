@@ -6,14 +6,14 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/16 15:34:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/16 19:36:50 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DRAW_H
 # define DRAW_H
-# include "colors.h"
 # include <string.h>
+# include "colors.h"
 
 enum			e_color
 {
@@ -166,6 +166,7 @@ t_point			*draw_matrix_topxtab(t_point *tab, size_t size, t_matrix *t);
 t_point			draw_raster_px(t_vector v, t_matrix *transform);
 t_vector		draw_matrix_multiply(t_vector point, const t_matrix *t);
 t_line			draw_raster_line(t_vector v1, t_vector v2, t_matrix *transform);
-int				draw_color_hsv(int h, int s, int v);
+t_rgb			draw_color_hsv(int t, float s, float v);
+int				draw_color_rgb2int(t_rgb *rgb);
 
 #endif

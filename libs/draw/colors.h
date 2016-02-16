@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 15:30:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/16 15:33:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/16 21:39:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ typedef struct		s_hsv
 
 typedef struct		s_rgb
 {
-	unsigned int	r:1;
-	unsigned int	g:1;
-	unsigned int	b:1;
+	unsigned int	r;
+	unsigned int	g;
+	unsigned int	b;
+	unsigned int	padding;
 }					t_rgb;
 
 #endif
