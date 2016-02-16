@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_colors.c                                      :+:      :+:    :+:   */
+/*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/15 23:34:49 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/16 15:35:49 by snicolet         ###   ########.fr       */
+/*   Created: 2016/02/16 15:30:21 by snicolet          #+#    #+#             */
+/*   Updated: 2016/02/16 15:33:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw.h"
+#ifndef COLORS_H
+# define COLORS_H
 
-int		draw_color_hsv(t_hsv *hsv)
+typedef struct		s_hsv
 {
-	int		color;
+	int				h;
+	float			s;
+	float			v;
+}					t_hsv;
 
-	color = 0;
-	if (hsv->h > 360)
-		hsv->h %= 360;
-	color = hsv->v * hsv->s * (hsv->h * hsv->s * hsv->v);
-	return (color);
-}
+typedef struct		s_rgb
+{
+	unsigned int	r:1;
+	unsigned int	g:1;
+	unsigned int	b:1;
+}					t_rgb;
+
+#endif

@@ -6,24 +6,25 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/15 23:37:51 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/16 15:34:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DRAW_H
 # define DRAW_H
+# include "colors.h"
 # include <string.h>
 
 enum			e_color
 {
-	COLOR_WHITE = 0xffffff,
-	COLOR_BLUE = 0x0000ff,
-	COLOR_RED = 0xff0000,
-	COLOR_GREEN = 0x00ff00,
-	COLOR_PURPLE = 0x9900cc,
-	COLOR_CYAN = 0x00ccff,
-	COLOR_YELLOW = 0xffff00,
-	COLOR_BROWN = 0x220000,
+	COLOR_WHITE = 0x00ffffff,
+	COLOR_BLUE = 0x000000ff,
+	COLOR_RED = 0x00ff0000,
+	COLOR_GREEN = 0x0000ff00,
+	COLOR_PURPLE = 0x009900cc,
+	COLOR_CYAN = 0x0000ccff,
+	COLOR_YELLOW = 0x00ffff00,
+	COLOR_BROWN = 0x00220000,
 	COLOR_BLACK = 0
 };
 
