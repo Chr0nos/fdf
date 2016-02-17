@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_colors.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 23:34:49 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 01:33:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 23:14:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,6 @@ t_rgb				draw_color_hsv(int t, float s, float v)
 
 int					draw_color_rgb2int(t_rgb *rgb)
 {
-	int		color;
-
-	color = 0;
-	color |= rgb->b & 0x000000ff;
-	color |= (rgb->g << 8) & 0x0000ff00;
-	color |= (rgb->r << 16) & 0x00ff0000;
-	return (color);
+	return ((rgb->b & 0x000000ff) | ((rgb->g << 8) & 0x0000ff00) |
+		((rgb->r << 16) & 0x00ff0000));
 }
