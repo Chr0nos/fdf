@@ -6,13 +6,13 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 23:34:49 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/16 21:53:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 01:33:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 
-static void			set_rgb_vals(t_rgb *rgb, unsigned int r, unsigned int g,
+inline static void	set_rgb_vals(t_rgb *rgb, unsigned int r, unsigned int g,
 		unsigned int b)
 {
 	rgb->r = r;
@@ -20,7 +20,7 @@ static void			set_rgb_vals(t_rgb *rgb, unsigned int r, unsigned int g,
 	rgb->b = b;
 }
 
-static void			set_colors(t_rgb *rgb, float *vals, const int ti)
+inline static void	set_colors(t_rgb *rgb, float *vals, const int ti)
 {
 	const unsigned int		l = (unsigned int)(vals[0] * 255.0f);
 	const unsigned int		m = (unsigned int)(vals[1] * 255.0f);
