@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fixed_decimal.c                                 :+:      :+:    :+:   */
+/*   ocl_clean.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/18 12:07:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/18 14:49:54 by snicolet         ###   ########.fr       */
+/*   Created: 2016/02/27 15:57:23 by snicolet          #+#    #+#             */
+/*   Updated: 2016/02/27 16:00:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_math.h"
+#include "ocl.h"
+#include <string.h>
+#include <stdlib.h>
 
-int		ft_fixed_decimal(int x, int scale)
+void	ocl_clean(t_ocl **ocl)
 {
-	int		mask;
+	unsigned int	p;
+	t_ocl			*o;
 
-	mask = INTMAX >> (31 - scale);
-	return (x & mask);
+	o = *ocl;
+	p = 0;
+	while (p < o->num_platforms)
+	{
+		free(o->platforms[p].devices);
+		p++;
+	}
+	free(o->platforms);
+	*ocl = NULL;
 }

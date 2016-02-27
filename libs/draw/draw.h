@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 13:27:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/25 18:46:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/27 12:24:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ t_rect			draw_make_rect(int x1, int y1, int x2, int y2);
 t_circle		draw_make_circle(int x1, int y1, int radius);
 t_point			draw_make_px(int x, int y);
 void			draw_putpoint(t_point *point);
-inline void		draw_px(t_mlx *x, const t_point *point, const int color);
+void			draw_px(t_mlx *x, const t_point *point, const int color);
 void			draw_rect(t_mlx *x, t_rect *rect, int color);
 void			draw_rect_fill(t_mlx *x, t_rect *rect, int color);
 void			draw_rect_mist(t_mlx *x, const t_rect *rect, size_t pixels,

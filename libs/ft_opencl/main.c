@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fixed_to_real.c                                 :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/18 12:00:53 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/18 12:02:35 by snicolet         ###   ########.fr       */
+/*   Created: 2016/02/27 15:52:58 by snicolet          #+#    #+#             */
+/*   Updated: 2016/02/27 16:00:03 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_math.h"
+#include "ocl.h"
+#include "libft.h"
 
-int		ft_fixed_to_real(int x, int scale)
+int			main(void)
 {
-	return ((x) >> scale);
+	t_ocl		*ocl;
+
+	if (!(ocl = ocl_init()))
+		ft_putendl("opencl failed");
+	else
+	{
+		ft_putendl("opencl ok");
+		ocl_display_devices(ocl);
+		ocl_clean(&ocl);
+	}
+	return (0);
 }

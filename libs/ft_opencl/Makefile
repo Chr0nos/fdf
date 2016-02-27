@@ -3,28 +3,27 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/01/18 11:43:48 by snicolet          #+#    #+#              #
-#    Updated: 2016/01/18 15:36:53 by snicolet         ###   ########.fr        #
+#    Created: 2016/02/27 16:01:14 by snicolet          #+#    #+#              #
+#    Updated: 2016/02/27 16:06:49 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=libftmath.a
-FLAGS=-Wall -Wextra -Werror -Weverything
-OBJ=ft_double_to_fixed.o \
-	ft_fixed_to_real.o \
-	ft_fixed_decimal.o \
-	ft_int_to_fixed.o
+NAME=ocl
+CC=clang
+FLAGS=-Wall -Werror -Wextra -Weverything -Ofast -march=native -mtune=native -fomit-frame-pointer
+OBJ=ocl_init.o ocl_clean.o ocl_display_devices.o \
+	main.o
+LIBFT=../libft
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(AR) rc $(NAME) $(OBJ)
-	ranlib $(NAME)
-
 %.o: %.c
-	$(CC) -c $(FLAGS) $<
+	$(CC) $(FLAGS) -c $< -I $(LIBFT)
+
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -o $(NAME) -L $(LIBFT) -lft -framework OpenCL
 
 clean:
 	$(RM) $(OBJ)
@@ -33,3 +32,5 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+.PHONY: all re clean fclean
