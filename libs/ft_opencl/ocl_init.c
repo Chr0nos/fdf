@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 13:05:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/27 15:52:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/27 16:29:57 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ocl_setup_devices(t_ocl *ocl, unsigned int pid)
 {
 	ocl->platforms[pid].devices = NULL;
 	clGetDeviceIDs(ocl->platforms[pid].platform_id,
-		CL_DEVICE_TYPE_ALL,	0, NULL, &ocl->platforms[pid].num_devices);
+		CL_DEVICE_TYPE_ALL, 0, NULL, &ocl->platforms[pid].num_devices);
 	ocl->platforms[pid].devices = malloc(sizeof(cl_device_id) *
 		(ocl->platforms[pid].num_devices));
 	clGetDeviceIDs(ocl->platforms[pid].platform_id, CL_DEVICE_TYPE_ALL,
