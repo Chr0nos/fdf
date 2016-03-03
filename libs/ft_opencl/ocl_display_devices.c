@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 15:44:39 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/27 15:47:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/03 17:18:38 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ocl_display_devices(t_ocl *ocl)
 	cl_uint		d;
 	int			cores;
 
+	ft_memset(buffer, 0, 128);
 	p = 0;
 	while (p < ocl->num_platforms)
 	{

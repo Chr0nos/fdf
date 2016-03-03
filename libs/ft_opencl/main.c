@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 15:52:58 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/27 16:00:03 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/03 19:07:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 int			main(void)
 {
 	t_ocl		*ocl;
+	char		test[256];
 
-	if (!(ocl = ocl_init()))
+	ft_memset(test, 0, 256);
+	if (!(ocl = ocl_init(NULL, test, 256)))
 		ft_putendl("opencl failed");
 	else
 	{

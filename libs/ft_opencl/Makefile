@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/27 16:01:14 by snicolet          #+#    #+#              #
-#    Updated: 2016/02/27 17:25:56 by snicolet         ###   ########.fr        #
+#    Updated: 2016/03/03 18:41:23 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME=ocl
 CC=clang
 FLAGS=-Wall -Werror -Wextra -Weverything -Ofast -march=native -mtune=native -fomit-frame-pointer -pipe
 OBJ=ocl_init.o ocl_clean.o ocl_display_devices.o ocl_kernel_bufferize.o \
+	ocl_strerror.o \
 	main.o
 LIBFT=../libft
 
