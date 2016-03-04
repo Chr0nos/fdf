@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 13:05:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/04 01:21:11 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/04 17:30:38 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ static void	ocl_setup_buffer(t_ocl *ocl)
 		ocl_showerror("context failure", err);
 	else
 	{
+		ocl->cq = clCreateCommandQueue(ocl->context,
+			ocl->platforms[0].devices[0], 0, &err);
+		if (err)
+			ocl_showerror("command queue failure: ", err);
 		ocl->buffer = clCreateBuffer(ocl->context,
 			CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
 			ocl->hostsize,
@@ -70,7 +74,7 @@ static int	ocl_setup_platforms(t_ocl *ocl)
 	return (1);
 }
 
-static void	ocl_setup(t_ocl *ocl)
+static int	ocl_setup(t_ocl *ocl)
 {
 	ocl->platform_id = NULL;
 	ocl->context = NULL;
@@ -78,7 +82,7 @@ static void	ocl_setup(t_ocl *ocl)
 	ocl->program = NULL;
 	ocl->kernel = NULL;
 	ocl->buffer = NULL;
-	ocl_setup_platforms(ocl);
+	return (ocl_setup_platforms(ocl));
 }
 
 t_ocl		*ocl_init(void *userdata, void *hostptr, size_t hsize)
@@ -90,6 +94,10 @@ t_ocl		*ocl_init(void *userdata, void *hostptr, size_t hsize)
 	ocl->userdata = userdata;
 	ocl->hostptr = hostptr;
 	ocl->hostsize = hsize;
-	ocl_setup(ocl);
+	if (!ocl_setup(ocl))
+	{
+		ocl_clean(&ocl);
+		return (NULL);
+	}
 	return (ocl);
 }

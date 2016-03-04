@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 13:08:13 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/03 18:44:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/04 17:05:57 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ void					ocl_showerror(const char *part1, cl_int err);
 void					ocl_clean(t_ocl **ocl);
 void					ocl_display_devices(t_ocl *ocl);
 int						ocl_kernel_bufferize(const char *filepath, char *buff);
+int						ocl_kernel_init(t_ocl *ocl);
 
 #endif
