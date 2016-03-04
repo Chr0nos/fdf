@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 13:05:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/03 19:29:18 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/04 01:21:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	ocl_setup_buffer(t_ocl *ocl)
 {
 	cl_int err;
 
-	ocl->context = clCreateContext(NULL, ocl->platforms[0].num_devices,
+	ocl->context = clCreateContext(NULL, 1,
 		ocl->platforms[0].devices, NULL, ocl->userdata, &err);
 	if (err)
 		ocl_showerror("context failure", err);
