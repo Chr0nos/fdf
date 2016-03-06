@@ -6,11 +6,12 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 17:20:53 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/27 17:28:25 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/06 11:53:03 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ocl.h"
+#include <unistd.h>
 #include <fcntl.h>
 
 int		ocl_kernel_bufferize(const char *filepath, char *buff)
