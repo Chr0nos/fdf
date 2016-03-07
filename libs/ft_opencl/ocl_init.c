@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 13:05:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/04 17:30:38 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/07 10:00:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,24 @@
 #include <string.h>
 #include <stdlib.h>
 
-static void	ocl_setup_buffer(t_ocl *ocl)
+static int	ocl_setup_buffer(t_ocl *ocl)
 {
 	cl_int err;
 
 	ocl->context = clCreateContext(NULL, 1,
 		ocl->platforms[0].devices, NULL, ocl->userdata, &err);
-	if (err)
-		ocl_showerror("context failure", err);
-	else
-	{
-		ocl->cq = clCreateCommandQueue(ocl->context,
-			ocl->platforms[0].devices[0], 0, &err);
-		if (err)
-			ocl_showerror("command queue failure: ", err);
-		ocl->buffer = clCreateBuffer(ocl->context,
-			CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
-			ocl->hostsize,
-			ocl->hostptr,
-			&err);
-		if (err)
-			ocl_showerror("create buffer failure", err);
-	}
+	if (ocl_showerrori("context failure", err))
+		return (-1);
+	ocl->cq = clCreateCommandQueue(ocl->context,
+		ocl->platforms[0].devices[0], 0, &err);
+	if (ocl_showerrori("command queue failure: ", err))
+		return (-2);
+	ocl->buffer = clCreateBuffer(ocl->context,
+		CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
+		ocl->hostsize, ocl->hostptr, &err);
+	if (ocl_showerrori("create buffer failure", err))
+		return (-3);
+	return (0);
 }
 
 static int	ocl_setup_devices(t_ocl *ocl, unsigned int pid)

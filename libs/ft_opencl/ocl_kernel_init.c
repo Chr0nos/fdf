@@ -6,12 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 17:04:58 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/04 17:20:35 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/07 10:19:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ocl.h"
 #include "libft.h"
+
+//todo: fonction qui charge une ligne par element de tableau char[][]
 
 int		ocl_kernel_init(t_ocl *ocl)
 {
@@ -25,10 +27,7 @@ int		ocl_kernel_init(t_ocl *ocl)
 	}
 	ocl->program = clCreateProgramWithSource(ocl->context, 1,
 		(const char **)&kernel_source, NULL, &err);
-	if (err)
-	{
-		ocl_strerror("failed to load kernel", err);
+	if (ocl_strerrori("failed to load kernel", err))
 		return (0);
-	}
 	return (1);
 }

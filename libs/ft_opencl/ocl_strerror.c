@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/03 18:37:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/03 19:11:37 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/07 09:50:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,12 @@ void	ocl_showerror(const char *part1, cl_int err)
 
 	ocl_strerror(buffer, err);
 	ft_printf("%s: %s (%d)\n", part1, buffer, (int)err);
+}
+
+int		ocl_showerrori(const char *part1, cl_int err)
+{
+	if (!err)
+		return (0);
+	ocl_showerror(part1, err);
+	return (1);
 }
