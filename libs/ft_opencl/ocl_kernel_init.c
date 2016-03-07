@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 17:04:58 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/07 13:24:24 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/07 14:43:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,22 @@ static void	clean_split(char **tab)
 static int	ocl_kernel_load(t_ocl *ocl, const char *kernel_source)
 {
 	char		**kernel_split;
-	const char	***kernel_const;
+	const char	**kernel_const;
 	cl_int		err;
 
 	err = 0;
 	ft_putendl("splitting kernel source");
 	if (!(kernel_split = ft_strsplit(kernel_source, '\n')))
 		return (-2);
+	kernel_const = (const char **)ft_tabtoconst((void **)kernel_split,
+		ft_tabcount((void **)kernel_split));
 	ft_putendl("loading kernel source");
-	kernel_const = (const char ***)&kernel_split;
-	kernel_display(*kernel_const);
+	kernel_display(kernel_const);
 	ocl->program = clCreateProgramWithSource(ocl->context, 1,
-		*kernel_const, NULL, &err);
+		kernel_const, NULL, &err);
 	ft_putendl("cleaning kernel source");
 	clean_split(kernel_split);
+	free(kernel_const);
 	if (ocl_showerrori("failed to load kernel", err))
 		return (-1);
 	return (0);
