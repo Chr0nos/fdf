@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 13:05:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/07 10:00:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/07 12:14:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ t_ocl		*ocl_init(void *userdata, void *hostptr, size_t hsize)
 		ocl_clean(&ocl);
 		return (NULL);
 	}
+	ocl_kernel_init(ocl);
 	return (ocl);
 }
