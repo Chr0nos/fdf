@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 13:57:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/20 18:30:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/12 16:36:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,32 @@ inline static int	fix_line(t_mlx *x, t_line *l)
 
 inline static void	grid_intern(t_mlx *x, t_vector *p1, t_vector *p2)
 {
-	t_line		l;
-	int			z;
+	t_line			l;
+	int				z;
+	int				color;
 
 	l = draw_raster_line(*p1, *p2, &x->gtransform);
 	if (!fix_line(x, &l))
 		return ;
+	(void)l;
+	(void)fix_line;
 	z = (int)((p1->z < p2->z) ? p2->z : p1->z);
 	if (z > 50)
-		draw_line(x, &l, COLOR_WHITE);
+		color = COLOR_WHITE;
 	else if (z > 28)
-		draw_line(x, &l, 0x00856600);
+		color = 0x00856600;
 	else if (z > 0)
-		draw_line(x, &l, COLOR_GREEN);
+		color = COLOR_GREEN;
 	else
-		draw_line(x, &l, 0x000000b0);
+		color = 0x000000b0;
+/*
+	t_point		px;
+
+	px = draw_raster_px(*p2, &x->gtransform);
+	fix_px(x, &px);
+	draw_px(x, &px, color);
+*/
+	draw_line(x, &l, color);
 }
 
 void				grid_init(t_mlx *x, t_plist **plist)
